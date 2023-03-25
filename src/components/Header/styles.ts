@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const HeaderContainer = styled.header`
     background-color: ${props => props.theme.blue};
+    margin-bottom: 1rem;
 `
 
 export const HeaderContent = styled.div``
@@ -31,12 +32,12 @@ export const HeaderMain = styled.main`
             border-bottom: 3px solid transparent;
 
             &:hover {
-                border-bottom: 3px solid ${props => props.theme["gray-300"]};
+                border-bottom: 3px solid ${props => props.theme["red-200"]};
             }
 
             &.active {
-                color: white;
-                border-bottom: 3px solid ${props => props.theme["gray-300"]};
+                color: ${props => props.theme["red-200"]};
+                border-bottom: 3px solid ${props => props.theme["red-200"]};
             }
         }
     }
