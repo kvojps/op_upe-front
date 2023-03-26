@@ -35,11 +35,7 @@ export function Dashboard() {
 
     async function getDashboardData() {
         await client
-            .get('/dashboard', {
-                headers: {
-                    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYWZhZWwuam9zZXNAdXBlLmJyIiwiaWF0IjoxNjc5ODAwNjM1LCJleHAiOjE2Nzk4MDIwNzV9.dQf7PF65ybqznfbMZOO4KhOhmICqc61EtIoue8-wrak'
-                }
-            })
+            .get('/dashboard')
             .then(res => {
                 const data: DashboardData = res.data
 

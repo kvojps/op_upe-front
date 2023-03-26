@@ -5,6 +5,6 @@ export const client = axios.create({
     headers: {
         Accept: '*/*',
         'Content-Type': 'application/json',
-        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYWZhZWwucmFmYWVsQHJhZmFlbC5jb20iLCJpYXQiOjE2Nzk4MDk3NDAsImV4cCI6MTY3OTgxMTE4MH0.VexI1aCKv43omatoxRphd2Pte46Df4ts6fJ1hqSPR5U'
+        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYWZhZWwucmFmYWVsMkByYWZhZWwuY29tIiwiaWF0IjoxNjc5ODExNDUyLCJleHAiOjE2Nzk4MTI4OTJ9.VRtSLj9ovYwR5l4kkxX7iewm31G43vK92nxI2R1KymI'
     },
 })
