@@ -35,11 +35,7 @@ export function Dashboard() {
 
     async function getDashboardData() {
         await client
-            .get('/dashboard', {
-                headers: {
-                    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYWZhZWwuam9zZXNAdXBlLmJyIiwiaWF0IjoxNjc5ODAwNjM1LCJleHAiOjE2Nzk4MDIwNzV9.dQf7PF65ybqznfbMZOO4KhOhmICqc61EtIoue8-wrak'
-                }
-            })
+            .get('/dashboard')
             .then(res => {
                 const data: DashboardData = res.data
 
@@ -152,7 +148,8 @@ export function Dashboard() {
                     <PieChartsContainer>
                         <PieChart title='Projetos por Modalidade' labels={Object.keys(dashboardData.modalities)} series={Object.values(dashboardData.modalities)} />
                         <PieChart title='Projetos por Área Temática' labels={Object.keys(dashboardData.thematicArea)} series={Object.values(dashboardData.thematicArea)} />
-                        <PieChart title='Projetos por Campus' labels={Object.keys(dashboardData.campuses)} series={Object.values(dashboardData.campuses)} />
+                        {/* TODO: renderizar props do data */}
+                        <PieChart title='Projetos por Campus' labels={['Garanhuns']} series={[1]} />
                     </PieChartsContainer>
 
                     <Chart 
