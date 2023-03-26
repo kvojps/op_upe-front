@@ -5,6 +5,7 @@ import { PieChart } from '../../components/PieChart'
 import { ApexOptions } from 'apexcharts'
 import { useEffect, useState } from 'react'
 import { client } from '../../client/client'
+import { Loader } from '../../components/Loader'
 
 export function Dashboard() {
     const [dashboardData, setDashboardData] = useState<DashboardData>({
@@ -17,6 +18,8 @@ export function Dashboard() {
         totalProjects: 0,
         totalUsers: 0
     })
+
+    const [isLoading, setIsLoading] = useState(true)
 
     type DashboardData = {
         totalCourses: number;
@@ -32,16 +35,21 @@ export function Dashboard() {
 
     async function getDashboardData() {
         await client
-            .get('/dashboard')
+            .get('/dashboard', {
+                headers: {
+                    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYWZhZWwuam9zZXNAdXBlLmJyIiwiaWF0IjoxNjc5ODAwNjM1LCJleHAiOjE2Nzk4MDIwNzV9.dQf7PF65ybqznfbMZOO4KhOhmICqc61EtIoue8-wrak'
+                }
+            })
             .then(res => {
-
-                console.log(res.data)
-                
                 const data: DashboardData = res.data
 
                 setDashboardData(data)
+                setIsLoading(false)
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+                alert(err)
+                setIsLoading(false)
+            })
     }
 
     useEffect(() => {
@@ -111,6 +119,8 @@ export function Dashboard() {
             }
           }
     })
+
+    if (isLoading) return <Loader />
 
     return (
         <DashboardContainer>
