@@ -1,18 +1,20 @@
 import styled from "styled-components";
 
 export const HomeContainer = styled.div`
-    max-width: 1120px;
-    margin: 0 auto;
+    /* max-width: 1120px;
+    margin: 0 auto; */
     margin-top: 4rem;
 `
 
 export const HomeContent = styled.div`
+    width: 100vh;
     display: flex;
     gap: 1.5rem;
     flex-direction: column;
 `
 
 export const HomeMain = styled.main`
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -29,6 +31,7 @@ export const HomeMain = styled.main`
         gap: 1rem;
 
         font-size: 2rem;
+        font-weight: 400;
 
         li {
             &:not(:first-child)::before {
@@ -37,7 +40,7 @@ export const HomeMain = styled.main`
                 width: 10px;
                 height: 10px;
                 border-radius: 50%;
-                background-color: ${(props) => props.theme['gray-500']};
+                background-color: ${(props) => props.theme['gray-300']};
                 margin-right: 10px;
                 position: relative;
                 bottom: 10%;
@@ -68,8 +71,6 @@ export const HomeMain = styled.main`
     div button {
         padding: 1rem;
 
-        font-weight: bold;
-
         display: flex;
         justify-content: center;
         align-items: center;
@@ -78,9 +79,12 @@ export const HomeMain = styled.main`
         min-width: 8rem;
         min-height: 3.5rem;
 
-        border: 2px solid ${props => props.theme["red-500"]};
         border-radius: 25px;
+        border-color: transparent;
+        background-color: ${props => props.theme["white"]};
         cursor: pointer;
+
+        transition: 1s;
     }
 
     div button span {
@@ -93,8 +97,10 @@ export const HomeMain = styled.main`
     }
 
     div button:hover {
-        transition: background-color 0.7s;
-        background-color: ${(props) => props.theme['red-200']};
+        transition: 1s;
+        background-color: ${props => props.theme["gray-50"]};
+        transform: scale(1.1);
+        filter: brightness(1.2);
     }
 
 `

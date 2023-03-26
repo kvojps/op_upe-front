@@ -34,7 +34,7 @@ export function Header() {
 
                     <NavLink to={"/"} >
                             <button>
-                                Login/Registrar
+                                ENTRAR
                             </button>
                     </NavLink>
                 </HeaderMain>

@@ -1,6 +1,7 @@
 import { HomeContainer, HomeMain } from "./styles";
 import { ArrowFatRight } from "@phosphor-icons/react"
 import { NavLink } from "react-router-dom";
+import { HomeInfoBox } from "../../components/HomeContainer";
 
 export function Home() {
     return (
@@ -18,15 +19,16 @@ export function Home() {
                     <em>OP-UPE : Conhecimento e transparência ao alcance de todos!</em>
 
                     <div>
+                        <p>Conheça os projetos publicados</p>
                         <NavLink to={"/projetos"}>
                             <button>
                                 <span>Projetos</span>
                                 <ArrowFatRight size={24} />
                             </button>
                         </NavLink>
-
-                        <p>Conheça os projetos publicados</p>
                     </div>
+
+                    <HomeInfoBox />
                 </HomeMain>
             </HomeContainer>
         </HomeContainer>

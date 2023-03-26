@@ -22,33 +22,41 @@ export const HeaderMain = styled.main`
         a {
             display: flex;
             text-decoration: none;
-            color: ${(props) => props.theme['gray-300']};
+            color: ${(props) => props.theme['white']};
+            transition: 0.5s;
 
             h1 {
-                font-size: 1.8rem;
+                font-size: 1.2rem;
+                font-weight: 400;
             }
 
-            border-top: 3px solid transparent;
-            border-bottom: 3px solid transparent;
 
             &:hover {
-                border-bottom: 3px solid ${props => props.theme["red-200"]};
+                color: ${props => props.theme["red-200"]};
             }
 
             &.active {
+                transform: scale(1.1);
                 color: ${props => props.theme["red-200"]};
-                border-bottom: 3px solid ${props => props.theme["red-200"]};
             }
         }
     }
 
     button {
-        width: 12rem;
-        height: 3.75rem;
+        padding: 0.5rem 1rem;
         border-radius: 8px;
-        color: ${props => props.theme.blue};
-        font-weight: bold;
-        font-size: 1.2rem;
+        border-color: transparent;
+        background-color: ${props => props.theme["red-700"]};
+        color: ${props => props.theme["white"]};
+        font-weight: 500;
+        font-size: 1.1rem;
         cursor: pointer;
+
+        &:hover {
+            transform: scale(1.05);
+            transition: 1.2s;
+            filter: brightness(1.3);
+            /* background-color: ${props => props.theme["gray-50"]}; */
+        }
     }
 `
