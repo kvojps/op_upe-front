@@ -1,11 +1,17 @@
 export const defaultTheme = {
   // upe
-  'red-500': '#ed232a',
+
+  'white': '#fff',
   'blue': '#1c3c78',
+  'blue-100': '#264A8C',
   'black': '#000',
   
-  'red-200': '#FF6347',
+  'red-200': '#B14E28',
+  'red-500': '#9C3108',
 
+  'red-700': '#7C1F0A',
+  
+  'gray-50': '#F1F1F1',	
   'gray-100': '#E1E1E6',
   'gray-300': '#C4C4CC',
   'gray-400': '#8D8D99',
