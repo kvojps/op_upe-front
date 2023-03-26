@@ -23,10 +23,6 @@ export function Header() {
                             <h1>Projetos</h1>
                         </NavLink>
 
-                        <NavLink to={"/forum"} >
-                            <h1>Fórum</h1>
-                        </NavLink>
-
                         <NavLink to={"/contato"} >
                             <h1>Contato</h1>
                         </NavLink>
