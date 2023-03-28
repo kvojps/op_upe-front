@@ -52,7 +52,7 @@ export const SignInMainForm = styled.form`
     input {
         min-width: 18.75rem;
         height: 2.8125rem;
-        /* padding: 1rem; */
+        padding-right: 1.5rem;
         border-top: 1px solid transparent;
         border-bottom: 1px solid ${props => props.theme.blue};
         background-color: transparent;
@@ -85,5 +85,18 @@ export const SignInMainForm = styled.form`
         display: flex;
         flex-direction: column;
         gap: 0.5rem;
+    }
+
+    div {
+        position: relative;
+        /* background-color: black; */
+    }
+
+    div svg {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
     }
 `
