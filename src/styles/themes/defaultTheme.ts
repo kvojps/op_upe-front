@@ -1,6 +1,6 @@
 export const defaultTheme = {
   // upe
-
+  'red-logo': '#ED232A',
   'white': '#fff',
   'blue': '#1c3c78',
   'blue-100': '#264A8C',
