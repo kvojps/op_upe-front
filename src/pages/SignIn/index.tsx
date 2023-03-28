@@ -1,25 +1,33 @@
 import { Eye, EyeSlash } from "@phosphor-icons/react";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { SignInContainer, SignInContent, SignInMain, SignInMainForm, SignInMainHeader } from "./styles";
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { LoginFormData } from '../../interfaces/form-interfaces'
+import { SignInFormValidationSchema } from '../../validation/form-schemas'
 
 export function SignIn() {
     const [isVisiblePassword, setIsVisiblePassword] = useState(false)
-    const inputPasswordRef = useRef<HTMLInputElement>(null)
+
+    const { register, handleSubmit, formState } = useForm<LoginFormData>({
+        resolver: zodResolver(SignInFormValidationSchema),
+        defaultValues: {
+          email: '',
+          password: '',
+        }
+    })
+
+    function onSubmit() {
+        // reset()
+    }
 
     function handleUpdateVisiblePassword() {
         setIsVisiblePassword(state => !state)
-
-        if (inputPasswordRef.current) {
-            inputPasswordRef.current.focus();
-            setTimeout(() => {
-                if (inputPasswordRef.current) {
-                    inputPasswordRef.current.selectionStart = inputPasswordRef.current.value.length;
-                    inputPasswordRef.current.selectionEnd = inputPasswordRef.current.value.length;
-                }
-            }, 0)
-        }
     }
+
+    const errorsPassword = formState.errors.password?.message
+    const errorsEmail = formState.errors.email?.message
 
     return (
         <SignInContainer>
@@ -29,10 +37,9 @@ export function SignIn() {
                         <h1>Entrar</h1>
                         <span>Faça login para cadastrar seus projetos!</span>
                     </SignInMainHeader>
-                    <SignInMainForm>
+                    <SignInMainForm onSubmit={handleSubmit(onSubmit)}>
                         <input
-                            name="email"
-                            type="text"
+                            {...register('email')}
                             placeholder="E-mail"
                         />
                         <div>
@@ -49,12 +56,18 @@ export function SignIn() {
                                 />
                             }
                             <input
-                                ref={inputPasswordRef}
-                                name="password"
+                                {...register('password')}
                                 type={isVisiblePassword ? "text" : "password"}
                                 placeholder="Senha"
                             />
                         </div>
+                        {
+                            (errorsEmail || errorsPassword) &&
+                            <div>
+                                <p>{errorsEmail && '* ' + errorsEmail}</p>
+                                <p>{errorsPassword && '* ' + errorsPassword}</p>
+                            </div>
+                        }
                         <nav>
                             <NavLink to={'/cadastrar'}>
                                 <p>Esqueceu sua senha? Clique aqui</p>

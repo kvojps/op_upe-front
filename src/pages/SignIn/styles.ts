@@ -14,13 +14,13 @@ export const SignInContent = styled.div`
 `
 
 export const SignInMain = styled.div`
+    min-width: 25rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 1.5rem;
     padding: 2rem;
-    /* border: 3px solid ${props => props.theme['gray-300']}; */
     border-radius: 8px;
     background-color: ${props => props.theme['gray-100']};
     box-shadow: 2px 2px 4px 4px ${props => props.theme['gray-300']};
@@ -38,7 +38,7 @@ export const SignInMainHeader = styled.div`
     }
 
     span {
-        color: ${props => props.theme["red-logo"]};
+        color: ${props => props.theme['gray-800']};
     }
 `
 
@@ -90,6 +90,11 @@ export const SignInMainForm = styled.form`
     div {
         position: relative;
         /* background-color: black; */
+    }
+
+    div p {
+        font-size: 14px;
+        color: ${props => props.theme["red-logo"]};
     }
 
     div svg {
