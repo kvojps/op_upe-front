@@ -3,6 +3,7 @@ import { DefaultLayout } from './layouts/deafultLayout'
 import { Contact } from './pages/Contact/index'
 import { Dashboard } from './pages/Dashboard'
 import { Home } from './pages/Home/index'
+import { Projects } from './pages/Projects'
 import { SignIn } from './pages/SignIn'
 
 export function Router() {
@@ -14,6 +15,7 @@ export function Router() {
                   <Route path='/contato' element={<Contact />} />
                   <Route path='/dashboard' element={<Dashboard />} />
                   <Route path='/entrar' element={<SignIn />} />
+                  <Route path='/projetos' element={<Projects />} />
                 </Route>
                 
                 <Route path='*' element={<Navigate to="/" />} />
