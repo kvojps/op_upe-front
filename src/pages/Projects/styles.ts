@@ -56,4 +56,8 @@ export const ProjectsAside = styled.aside`
     }
 `
 
-export const ProjectsMain = styled.main``
+export const ProjectsMain = styled.main`
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+`

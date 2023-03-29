@@ -1,4 +1,5 @@
 import { Comment } from "../../components/Comment";
+import { Project } from "../../components/Project";
 import { ProjectsAside, ProjectsContainer, ProjectsContent, ProjectsMain } from "./styles";
 
 export function Projects() {
@@ -33,7 +34,12 @@ export function Projects() {
                         </li>
                     </ul>
                 </ProjectsAside>
-                <ProjectsMain>b</ProjectsMain>
+                <ProjectsMain>
+                    <Project />
+                    <Project />
+                    <Project />
+                    <Project />
+                </ProjectsMain>
             </ProjectsContent>
         </ProjectsContainer>
     )
