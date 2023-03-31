@@ -63,6 +63,7 @@ export const ProjectsMain = styled.main`
     gap: 1.2rem;
  
     .projects-list {
+        width: 100%;
         list-style: none;
         display: flex;
         flex-direction: column;
