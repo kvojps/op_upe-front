@@ -5,6 +5,7 @@ import { Dashboard } from './pages/Dashboard'
 import { Home } from './pages/Home/index'
 import { Projects } from './pages/Projects'
 import { SignIn } from './pages/SignIn'
+import { About } from './pages/About'
 
 export function Router() {
   return (
@@ -16,6 +17,7 @@ export function Router() {
                   <Route path='/dashboard' element={<Dashboard />} />
                   <Route path='/entrar' element={<SignIn />} />
                   <Route path='/projetos' element={<Projects />} />
+                  <Route path='/sobre' element={<About />} />
                 </Route>
                 
                 <Route path='*' element={<Navigate to="/" />} />
