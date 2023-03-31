@@ -1,6 +1,7 @@
 import { Comment } from "../../components/Comment";
 import { Paginator } from "../../components/mui/Paginator";
 import { Project } from "../../components/Project";
+import { getTimeDifferenceFromNowPTBR } from "../../utils/formate-date";
 import { ProjectsAside, ProjectsContainer, ProjectsContent, ProjectsMain } from "./styles";
 
 export function Projects() {
@@ -26,13 +27,14 @@ export function Projects() {
                     <span>Comentários recentes</span>
                     <ul>
                         <li>
-                            <Comment />
-                        </li>
-                        <li>
-                            <Comment />
-                        </li>
-                        <li>
-                            <Comment />
+                            <Comment
+                                key={1}
+                                authorName="Rafira Developer"
+                                projectTitle="Projetinho publicado"
+                                text="Unbelievable!"
+                                timeDistanceToNow={getTimeDifferenceFromNowPTBR(new Date())}
+                                imageURL="https://github.com/rafa-souza-dev.png"
+                            />
                         </li>
                     </ul>
                 </ProjectsAside>

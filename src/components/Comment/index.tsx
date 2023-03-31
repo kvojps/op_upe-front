@@ -1,18 +1,26 @@
 import { CommentContainer, CommentContent, CommentHeader, CommentMain } from "./styles";
+import userCircle from '../../assets/user_circle.svg'
+import { CommentProps } from "../../interfaces/props-interfaces";
 
-export function Comment() {
-    const imagePath = 'https://github.com/rafa-souza-dev.png'
+export function Comment({
+    authorName,
+    timeDistanceToNow,
+    projectTitle,
+    text,
+    imageURL,
+}: CommentProps) {
+    const selectedImage = imageURL ?? userCircle
 
     return (
         <CommentContainer>
             <CommentContent>
-                <img src={imagePath} alt="" />
+                <img src={selectedImage} alt="" />
                 <CommentMain>
                     <CommentHeader>
-                        <strong>Rafira Developer <span>em</span> Desafios e inovações no ensino de história no período de pandemia</strong>
-                        <p>13 de dezembro de 2021</p>
+                        <strong>{authorName} <span>em</span> {projectTitle}</strong>
+                        <p>{timeDistanceToNow}</p>
                     </CommentHeader>
-                    <p>Sensacional!</p>
+                    <p>{text}</p>
                 </CommentMain>
             </CommentContent>
         </CommentContainer>

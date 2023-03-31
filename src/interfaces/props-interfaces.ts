@@ -15,3 +15,11 @@ export interface ProjectProps {
     introduction: string
     createdAt: Date
 }
+
+export interface CommentProps {
+    imageURL?: string
+    authorName: string
+    projectTitle: string
+    timeDistanceToNow: string
+    text: string
+}
