@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import inovacao from '../../assets/inovacao.jpeg'
 import extensao from '../../assets/extensao.jpeg'
 import pesquisa from '../../assets/pesquisa.jpeg'
+import { convertDateToBRFormat } from "../../utils/formate-date";
 
 export function Project({
     title,
@@ -40,6 +41,7 @@ export function Project({
 
     const categoryDefaultValues = getCategoryDefaultValues(category)
     const selectedImageURL = imageURL ?? categoryDefaultValues.imageURL
+    const formattedDate = convertDateToBRFormat(createdAt)
 
     return (
         <ProjectContainer>
@@ -49,7 +51,7 @@ export function Project({
                     <span>{categoryDefaultValues.category}</span>
                     <div>
                         <p>By {authorName}</p>
-                        <p>{createdAt.toString()}</p>
+                        <p>{formattedDate}</p>
                     </div>
                 </ProjectHeader>
                 <ProjectMain>
