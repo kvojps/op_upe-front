@@ -1,4 +1,5 @@
 import { Comment } from "../../components/Comment";
+import { Paginator } from "../../components/mui/Paginator";
 import { Project } from "../../components/Project";
 import { ProjectsAside, ProjectsContainer, ProjectsContent, ProjectsMain } from "./styles";
 
@@ -35,10 +36,18 @@ export function Projects() {
                     </ul>
                 </ProjectsAside>
                 <ProjectsMain>
-                    <Project />
-                    <Project />
-                    <Project />
-                    <Project />
+                    <ul className="projects-list">
+                        <li>
+                            <Project />
+                        </li>
+                        <li>
+                            <Project />
+                        </li>
+                        <li>
+                            <Project />
+                        </li>
+                    </ul>
+                    <Paginator />
                 </ProjectsMain>
             </ProjectsContent>
         </ProjectsContainer>

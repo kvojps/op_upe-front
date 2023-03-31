@@ -58,6 +58,14 @@ export const ProjectsAside = styled.aside`
 
 export const ProjectsMain = styled.main`
     display: flex;
+    align-items: center;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1.2rem;
+ 
+    .projects-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
 `
