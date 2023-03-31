@@ -1,5 +1,4 @@
 import { CommentContainer, CommentContent, CommentHeader, CommentMain } from "./styles";
-import { UserCircle } from '@phosphor-icons/react'
 
 export function Comment() {
     const imagePath = 'https://github.com/rafa-souza-dev.png'

@@ -1,11 +1,6 @@
 import Chart from 'react-apexcharts'
+import { PieChartProps } from '../../interfaces/props-interfaces'
 import { PieChartContainer } from './styles'
-
-interface PieChartProps {
-    title: string
-    series: number[]
-    labels: string[]
-}
 
 export function PieChart({ title, series, labels }: PieChartProps) {
     return (

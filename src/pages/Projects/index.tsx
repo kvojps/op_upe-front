@@ -15,6 +15,7 @@ export function Projects() {
                     <span>Categorias</span>
                     <ul>
                         <li>Extensão</li>
+                        <li>Inovação</li>
                         <li>Pesquisa</li>
                     </ul>
                     <span>Posts Recentes</span>
@@ -38,13 +39,15 @@ export function Projects() {
                 <ProjectsMain>
                     <ul className="projects-list">
                         <li>
-                            <Project />
-                        </li>
-                        <li>
-                            <Project />
-                        </li>
-                        <li>
-                            <Project />
+                            <Project 
+                                id={1}
+                                authorName="Rafira Developer"
+                                category="PESQUISA"
+                                createdAt={new Date()}
+                                introduction={"Introdução .... .. . . . pontinhos"}
+                                title="Título inútil por enquanto"
+                                key={1}
+                            />
                         </li>
                     </ul>
                     <Paginator />
