@@ -1,4 +1,4 @@
-import { format } from 'date-fns'
+import { format, formatDistanceToNow } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 
 export function convertDateToBRFormat(date: Date) {
@@ -7,4 +7,13 @@ export function convertDateToBRFormat(date: Date) {
     })
 
     return formattedDate
+}
+
+export function getTimeDifferenceFromNowPTBR(date: Date) {
+    const time = formatDistanceToNow(date, {
+        locale: ptBR,
+        addSuffix: true
+    })
+
+    return time
 }
