@@ -17,3 +17,9 @@ export function getTimeDifferenceFromNowPTBR(date: Date) {
 
     return time
 }
+
+export function convertDateFormatToYearMonthDay(date: Date) {
+    const formattedDate = format(date, 'yyyy-MM-dd')
+
+    return formattedDate
+}
