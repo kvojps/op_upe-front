@@ -47,8 +47,6 @@ export function Projects() {
     const [titleValue, setTitleValue] = useState('')
     const [initialDateValue, setInicialDateValue] = useState<Dayjs | null>(null);
     const [finalDateValue, setFinalDateValue] = useState<Dayjs | null>(null);
-    const [selectedCategory, setSelectedCategory] = useState("");
-    const [selectedModality, setSelectedModality] = useState("");
     const [projectFilterDTO, setProjectFilterDTO] = useState<ProjectsFilterDTO>({
         size: 5
     })
@@ -190,11 +188,7 @@ export function Projects() {
                             </button>
                         </form>
                         <select 
-                            value={selectedCategory}
-                            onChange={(e) => {
-                                setSelectedCategory(e.target.value)
-                                handleChangeSelectedCategory(e.target.value)
-                            }}
+                            onChange={(e) => handleChangeSelectedCategory(e.target.value)}
                             disabled={isFormDisabled} 
                             name="select-categories" 
                             id="select-categories"
@@ -205,11 +199,7 @@ export function Projects() {
                             <option value="PESQUISA">Pesquisa</option>
                         </select>
                         <select
-                            value={selectedModality}
-                            onChange={(e) => {
-                                setSelectedModality(e.target.value)
-                                handleChangeSelectedModality(e.target.value)
-                            }}
+                            onChange={(e) => handleChangeSelectedModality(e.target.value)}
                             disabled={isFormDisabled} 
                             name="select-modalities" 
                             id="select-modalities"
