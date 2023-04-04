@@ -23,3 +23,9 @@ export interface CommentProps {
     timeDistanceToNow: string
     text: string
 }
+
+export interface PaginatorProps {
+    count: number
+    page: number
+    handleChange: (event: React.ChangeEvent<unknown>, value: number) => void
+}
