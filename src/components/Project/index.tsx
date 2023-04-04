@@ -1,25 +1,66 @@
 import { ProjectContainer, ProjectContent, ProjectFooter, ProjectHeader, ProjectMain } from "./styles";
 import { ArrowRight } from '@phosphor-icons/react'
+import { ProjectProps } from "../../interfaces/props-interfaces";
+import { category } from "../../@types/props";
+import { useNavigate } from "react-router-dom";
+import inovacao from '../../assets/inovacao.jpeg'
+import extensao from '../../assets/extensao.jpeg'
+import pesquisa from '../../assets/pesquisa.jpeg'
+import { convertDateToBRFormat } from "../../utils/formate-date";
 
-export function Project() {
+export function Project({
+    title,
+    authorName,
+    category,
+    createdAt,
+    introduction,
+    id,
+    imageURL
+}: ProjectProps) {
+    const navigate = useNavigate()
+
+    function getCategoryDefaultValues(category: category) {
+        switch (category) {
+            case "EXTENSAO":
+                return {
+                    category: "EXTENSÃO",
+                    imageURL: extensao
+                }
+            case "INOVACAO":
+                return {
+                    category: "INOVAÇÃO",
+                    imageURL: inovacao
+                }
+            case "PESQUISA":
+                return {
+                    category: "PESQUISA",
+                    imageURL: pesquisa
+                }
+        }
+    }
+
+    const categoryDefaultValues = getCategoryDefaultValues(category)
+    const selectedImageURL = imageURL ?? categoryDefaultValues.imageURL
+    const formattedDate = convertDateToBRFormat(createdAt)
+
     return (
         <ProjectContainer>
             <ProjectContent>
                 <ProjectHeader>
-                    <h1>Desafios e inovações no ensino de história no período de pandemia</h1>
-                    <span>EXTENSÃO</span>
+                    <h1>{title}</h1>
+                    <span>{categoryDefaultValues.category}</span>
                     <div>
-                        <p>By Rafira Developer</p>
-                        <p>2 de setembro de 2021</p>
+                        <p>By {authorName}</p>
+                        <p>{formattedDate}</p>
                     </div>
                 </ProjectHeader>
                 <ProjectMain>
-                    <img src="https://static.vecteezy.com/ti/fotos-gratis/p2/819707-paisagem-bonita-foto.jpg" alt="" />
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere, magnam ipsum! Deleniti sit mollitia facilis, molestias animi quaerat hic accusamus tenetur corporis tempore pariatur reprehenderit nesciunt officia voluptates suscipit quae.</p>
+                    <img src={selectedImageURL} alt="" />
+                    <p>{introduction}</p>
                 </ProjectMain>
                 <ProjectFooter>
-                    <button>
-                        <strong>READ MORE</strong>
+                    <button onClick={() => navigate(`/projeto/${id}`)}>
+                        <strong>LEIA MAIS</strong>
                         <ArrowRight size={32} />
                     </button>
                 </ProjectFooter>

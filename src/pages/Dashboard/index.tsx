@@ -9,14 +9,14 @@ import { Loader } from '../../components/Loader'
 
 export function Dashboard() {
     const [dashboardData, setDashboardData] = useState<DashboardData>({
-        campuses: {},
-        courses: {},
-        thematicArea: {},
-        modalities: {},
-        totalCampuses: 0,
-        totalCourses: 0,
-        totalProjects: 0,
-        totalUsers: 0
+      projectsPerCampuses: {},
+      projectsPerCourses: {},
+      projectsPerThematicArea: {},
+      projectsPerModalities: {},
+      totalCampuses: 0,
+      totalCourses: 0,
+      totalProjects: 0,
+      totalUsers: 0
     })
 
     const [isLoading, setIsLoading] = useState(true)
@@ -27,10 +27,10 @@ export function Dashboard() {
         totalProjects: number;
         totalUsers: number;
 
-        courses: object;
-        campuses: object;
-        modalities: object;
-        thematicArea: object;
+        projectsPerCourses: object;
+        projectsPerCampuses: object;
+        projectsPerModalities: object;
+        projectsPerThematicArea: object;
     }
 
     async function getDashboardData() {
@@ -52,7 +52,7 @@ export function Dashboard() {
         getDashboardData()
     }, [])
 
-    const getChartOptions = (categories: string[]) : ApexOptions => ({
+    const getChartOptions = (categories: string[], title: string) : ApexOptions => ({
         chart: {
             type: 'bar',
             height: 380
@@ -97,7 +97,7 @@ export function Dashboard() {
             }
           },
           title: {
-              text: 'Projetos por Curso',
+              text: title,
               align: 'center',
               floating: true
           },
@@ -115,6 +115,22 @@ export function Dashboard() {
             }
           }
     })
+
+    function getFilteredKeys(object: object) {
+      const entries = Object.entries(object)
+
+      const array = entries.filter(entrie => entrie[1] !== 0)
+
+      return array.map(element => element[0])
+    }
+
+    function getFilteredValues(object: object) {
+      const entries = Object.entries(object)
+
+      const array = entries.filter(entrie => entrie[1] !== 0)
+
+      return array.map(element => element[1])
+    }
 
     if (isLoading) return <Loader />
 
@@ -146,16 +162,21 @@ export function Dashboard() {
                     </DashboardSummary>
 
                     <PieChartsContainer>
-                        <PieChart title='Projetos por Modalidade' labels={Object.keys(dashboardData.modalities)} series={Object.values(dashboardData.modalities)} />
-                        <PieChart title='Projetos por Área Temática' labels={Object.keys(dashboardData.thematicArea)} series={Object.values(dashboardData.thematicArea)} />
-                        {/* TODO: renderizar props do data */}
-                        <PieChart title='Projetos por Campus' labels={['Garanhuns']} series={[1]} />
+                        <PieChart title='Projetos por Modalidade' labels={getFilteredKeys(dashboardData.projectsPerModalities)} series={getFilteredValues(dashboardData.projectsPerModalities)} />
+                        <PieChart title='Projetos por Área Temática' labels={getFilteredKeys(dashboardData.projectsPerThematicArea)} series={getFilteredValues(dashboardData.projectsPerThematicArea)} />
                     </PieChartsContainer>
 
                     <Chart 
-                        options={getChartOptions(Object.keys(dashboardData.courses))} 
-                        series={[{data: Object.values(dashboardData.courses)}]} 
+                        options={getChartOptions(getFilteredKeys(dashboardData.projectsPerCourses), 'Projetos por Curso')} 
+                        series={[{data: getFilteredValues(dashboardData.projectsPerCourses)}]} 
                         type="bar" 
+                        height={380} 
+                    />
+
+                    <Chart 
+                        options={getChartOptions(getFilteredKeys(dashboardData.projectsPerCampuses), 'Projetos por Campus')} 
+                        series={[{data: getFilteredValues(dashboardData.projectsPerCampuses)}]}
+                        type="bar"
                         height={380} 
                     />
 

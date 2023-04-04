@@ -1,11 +1,6 @@
 import Chart from 'react-apexcharts'
+import { PieChartProps } from '../../interfaces/props-interfaces'
 import { PieChartContainer } from './styles'
-
-interface PieChartProps {
-    title: string
-    series: number[]
-    labels: string[]
-}
 
 export function PieChart({ title, series, labels }: PieChartProps) {
     return (
@@ -15,15 +10,15 @@ export function PieChart({ title, series, labels }: PieChartProps) {
                 series={series}
                 options={{
                     chart: {
-                        width: 380,
+                        width: 420,
                         type: 'pie',
                     },
                     labels: labels,
                     responsive: [{
-                        breakpoint: 480,
+                        breakpoint: 520,
                         options: {
                             chart: {
-                                width: 200
+                                width: 300
                             },
                             legend: {
                                 position: 'bottom'
@@ -32,7 +27,7 @@ export function PieChart({ title, series, labels }: PieChartProps) {
                     }]
                 }}
                     type="pie" 
-                    width={350}
+                    width={420}
             />
         </PieChartContainer>
     )

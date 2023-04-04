@@ -13,31 +13,13 @@ export const ProjectsContent = styled.div`
 `
 
 export const ProjectsAside = styled.aside`
+    border: 1px solid ${props => props.theme["gray-300"]};
+    border-radius: 8px;
+    padding: 1rem;
+
     display: flex;
     flex-direction: column;
     gap: 2rem;
-
-    form {
-        display: flex;
-        gap: 1rem;
-    }
-
-    form input {
-        width: 13rem;
-        height: 3rem;
-        padding: 1rem;
-        border: 1px solid ${props => props.theme.blue};
-        border-radius: 8px;
-    }
-
-    form button {
-        width: 100%;
-        border-radius: 8px;
-        cursor: pointer;
-        height: 3rem;
-        background-color: ${props => props.theme.blue};
-        color: ${props => props.theme.white};
-    }
 
     span {
         color: ${props => props.theme["red-200"]};
@@ -58,6 +40,72 @@ export const ProjectsAside = styled.aside`
 
 export const ProjectsMain = styled.main`
     display: flex;
+    align-items: center;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1.2rem;
+ 
+    .projects-list {
+        width: 100%;
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+`
+
+export const ProjectsFilterBox = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    .title-filter-form {
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    .title-filter-form input {
+        width: 12rem;
+        height: 3rem;
+        padding: 1rem;
+        border: 1px solid ${props => props.theme.blue};
+        border-radius: 8px;
+    }
+
+    .title-filter-form button {
+        width: 100%;
+        border-radius: 8px;
+        cursor: pointer;
+        height: 3rem;
+        background-color: ${props => props.theme.blue};
+        color: ${props => props.theme.white};
+    }
+
+    select {
+        padding: 0 0.5rem;
+        font-size: 16px;
+        border-radius: 8px;
+        width: 100%;
+        height: 2rem;
+    }
+`
+
+export const ProjectsFilterDateForm = styled.form`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.8rem 0;
+    border-radius: 4px;
+    border-top: 1px solid ${props => props.theme["gray-600"]};
+    border-bottom: 1px solid ${props => props.theme["gray-600"]};
+
+    .filter-date-button {
+        width: 100%;
+        height: 2rem;
+        background-color: ${props => props.theme.blue};
+        color: ${props => props.theme.white};
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1.2rem;
+    }
 `
