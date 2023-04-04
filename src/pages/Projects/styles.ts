@@ -58,6 +58,10 @@ export const ProjectsFilterBox = styled.div`
     flex-direction: column;
     gap: 1rem;
 
+    *:disabled {
+        cursor: not-allowed;
+    }
+
     .title-filter-form {
         display: flex;
         gap: 0.5rem;
@@ -78,6 +82,11 @@ export const ProjectsFilterBox = styled.div`
         height: 3rem;
         background-color: ${props => props.theme.blue};
         color: ${props => props.theme.white};
+
+        &:disabled {
+            background-color: ${props => props.theme["gray-300"]};
+            cursor: not-allowed;
+        }
     }
 
     select {
@@ -107,5 +116,10 @@ export const ProjectsFilterDateForm = styled.form`
         border-radius: 8px;
         cursor: pointer;
         font-size: 1.2rem;
+
+        &:disabled {
+            background-color: ${props => props.theme["gray-300"]};
+            cursor: not-allowed;
+        }
     }
 `

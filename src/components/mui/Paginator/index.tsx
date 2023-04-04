@@ -1,13 +1,8 @@
-import * as React from 'react';
 import Pagination from '@mui/material/Pagination';
+import { PaginatorProps } from '../../../interfaces/props-interfaces';
 
-export function Paginator() {
-  const [page, setPage] = React.useState(1);
-  const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
-    setPage(value);
-  };
-
+export function Paginator({ count, page, handleChange }: PaginatorProps) {
   return (
-    <Pagination count={10} page={page} onChange={handleChange} />
+    <Pagination count={count} page={page} onChange={handleChange} />
   );
 }
