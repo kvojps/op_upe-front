@@ -114,6 +114,13 @@ export function Projects() {
         fetchProjects(url)
     }, [projectFilterDTO])
 
+    useEffect(() => {
+        window.scroll({
+            top: 0,
+            behavior: 'smooth',
+        })
+    }, [projectsPage])
+
     function validateDayjsDate(date: Dayjs | null): boolean {
         const result = date?.format('DD-MM-YYYY')
 
@@ -280,7 +287,7 @@ export function Projects() {
                         <Loader />
                         :
                         <>
-                            <ul className="projects-list">
+                            <ul aria-disabled={isLoadingProjectsRequest} className="projects-list">
                             {
                                 projectsData.projetos.map(project => (
                                     <li key={project.id}>

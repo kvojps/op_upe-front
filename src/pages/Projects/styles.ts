@@ -51,6 +51,10 @@ export const ProjectsMain = styled.main`
         flex-direction: column;
         gap: 1.5rem;
     }
+    
+    .projects-list[aria-disabled="true"] {
+        filter: blur(5px);
+    }
 `
 
 export const ProjectsFilterBox = styled.div`
