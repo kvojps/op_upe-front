@@ -55,7 +55,7 @@ export function Projects() {
     const [projectFilterDTO, setProjectFilterDTO] = useState<ProjectsFilterDTO>({
         size: 5
     })
-    const [projectsPage, setProjectsPage] = useState(0)
+    const [projectsPage, setProjectsPage] = useState(1)
 
     function incrementProjectsFilterUrl(projectFilterDTO: ProjectsFilterDTO) {
         let url = '/projeto/filtro'
@@ -88,9 +88,16 @@ export function Projects() {
             .then(res => {
                 const data: ProjectResponse = res.data
 
-                setProjectsData(data)
+                if (data.totalPaginas < projectsPage) {
+                    setProjectsPage(1)
 
-                setProjectsPage(data.paginaAtual + 1)
+                    setProjectFilterDTO(state => ({
+                        ...state,
+                        page: 0
+                    }))
+                }
+
+                setProjectsData(data)
                 setIsLoadingProjectsRequest(false)
                 setIsFormDisabled(false)
             })
@@ -153,7 +160,9 @@ export function Projects() {
         }))
     }
 
-    function handleChangePage(event: React.ChangeEvent<unknown>, value: number) {
+    function handleChangePage(_: React.ChangeEvent<unknown>, value: number) {
+        setProjectsPage(value)
+
         setProjectFilterDTO(state => ({
             ...state,
             page: value - 1
@@ -164,8 +173,6 @@ export function Projects() {
         !validateDayjsDate(finalDateValue)
 
     const isProjectFilterDTOEmpty = Object.values(projectFilterDTO).length === 1
-
-    const totalPages = Math.ceil(projectsData.totalItens / projectFilterDTO.size)
 
     return (
         <ProjectsContainer>
@@ -289,7 +296,7 @@ export function Projects() {
                                 ))
                             }
                             </ul>
-                            <Paginator page={projectsPage} count={totalPages} handleChange={handleChangePage} />
+                            <Paginator page={projectsPage} count={projectsData.totalPaginas} handleChange={handleChangePage} />
                         </>
                     }
                 </ProjectsMain>
