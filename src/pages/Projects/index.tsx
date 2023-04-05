@@ -1,17 +1,18 @@
 import { Comment } from "../../components/Comment";
 import { Paginator } from "../../components/mui/Paginator";
 import { Project } from "../../components/Project";
-import { convertDateFormatToYearMonthDay, getTimeDifferenceFromNowPTBR } from "../../utils/formate-date";
+import { getTimeDifferenceFromNowPTBR } from "../../utils/formate-date";
 import { ProjectsAside, ProjectsContainer, ProjectsContent, ProjectsFilterBox, ProjectsFilterDateForm, ProjectsMain } from "./styles";
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { FormEvent, FormEventHandler, FormHTMLAttributes, useEffect, useState } from "react";
-import { category, modalities } from "../../@types/props"
+import { FormEvent, useEffect, useState } from "react";
+import { category } from "../../@types/props"
 import { client } from "../../client/client";
 import { Loader } from "../../components/Loader";
-import dayjs, { Dayjs } from 'dayjs';
+import { Dayjs } from 'dayjs';
+import { XCircle } from "@phosphor-icons/react";
 
 type ProjectData = {
     id: number
@@ -56,6 +57,8 @@ export function Projects() {
         size: 5
     })
     const [projectsPage, setProjectsPage] = useState(1)
+    const [selectedCategory, setSelectedCategory] = useState("")
+    const [selectedModality, setSelectedModality] = useState("")
 
     function incrementProjectsFilterUrl(projectFilterDTO: ProjectsFilterDTO) {
         let url = '/projeto/filtro'
@@ -176,6 +179,18 @@ export function Projects() {
         }))
     }
 
+    function handleRemoveFilters() {
+        setTitleValue('')
+        setSelectedCategory('')
+        setSelectedModality('')
+        setInicialDateValue(null)
+        setFinalDateValue(null)
+
+        setProjectFilterDTO(state => ({
+            size: 5
+        }))
+    }
+
     const dateInputHasInvalidDate = !validateDayjsDate(initialDateValue) ||
         !validateDayjsDate(finalDateValue)
 
@@ -191,22 +206,39 @@ export function Projects() {
                             action="" 
                             className="title-filter-form"
                         >
-                            <input
-                                disabled={isFormDisabled}
-                                type="text" 
-                                placeholder="Escreva um título..."
-                                value={titleValue}
-                                onChange={(e) => setTitleValue(e.target.value)}
-                            />
-                            <button
-                                type="submit"
-                                disabled={titleValue === '' || isFormDisabled ? true : false}
-                            >
-                                Pesquisar
-                            </button>
+                            <div>
+                                <input
+                                    disabled={isFormDisabled}
+                                    type="text" 
+                                    placeholder="Escreva um título..."
+                                    value={titleValue}
+                                    onChange={(e) => setTitleValue(e.target.value)}
+                                />
+                                <button
+                                    type="submit"
+                                    disabled={titleValue === '' || isFormDisabled ? true : false}
+                                >
+                                    Pesquisar
+                                </button>
+                            </div>
+                            {
+                                !isProjectFilterDTOEmpty &&
+                                <button
+                                    type="button"
+                                    onClick={handleRemoveFilters}
+                                    disabled={isFormDisabled}
+                                >
+                                    <p>Remover Filtros</p>
+                                    <XCircle />
+                                </button>
+                            }
                         </form>
-                        <select 
-                            onChange={(e) => handleChangeSelectedCategory(e.target.value)}
+                        <select
+                            value={selectedCategory}
+                            onChange={(e) => {
+                                setSelectedCategory(e.target.value)
+                                handleChangeSelectedCategory(e.target.value)
+                            }}
                             disabled={isFormDisabled} 
                             name="select-categories" 
                             id="select-categories"
@@ -217,7 +249,11 @@ export function Projects() {
                             <option value="PESQUISA">Pesquisa</option>
                         </select>
                         <select
-                            onChange={(e) => handleChangeSelectedModality(e.target.value)}
+                            value={selectedModality}
+                            onChange={(e) => {
+                                setSelectedModality(e.target.value)
+                                handleChangeSelectedModality(e.target.value)
+                            }}
                             disabled={isFormDisabled} 
                             name="select-modalities" 
                             id="select-modalities"

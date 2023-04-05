@@ -16,6 +16,7 @@ export const ProjectsAside = styled.aside`
     border: 1px solid ${props => props.theme["gray-300"]};
     border-radius: 8px;
     padding: 1rem;
+    max-height: 48.75rem;
 
     display: flex;
     flex-direction: column;
@@ -68,10 +69,16 @@ export const ProjectsFilterBox = styled.div`
 
     .title-filter-form {
         display: flex;
+        flex-direction: column;
+        gap: 0.2rem;
+    }
+
+    .title-filter-form div {
+        display: flex;
         gap: 0.5rem;
     }
 
-    .title-filter-form input {
+    .title-filter-form div input {
         width: 12rem;
         height: 3rem;
         padding: 1rem;
@@ -79,13 +86,32 @@ export const ProjectsFilterBox = styled.div`
         border-radius: 8px;
     }
 
-    .title-filter-form button {
+    .title-filter-form div button {
         width: 100%;
         border-radius: 8px;
         cursor: pointer;
         height: 3rem;
         background-color: ${props => props.theme.blue};
         color: ${props => props.theme.white};
+
+        &:disabled {
+            background-color: ${props => props.theme["gray-300"]};
+            cursor: not-allowed;
+        }
+    }
+
+    .title-filter-form button {
+        width: 10rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.3rem;
+        border-radius: 8px;
+        background-color: ${props => props.theme["gray-100"]};
+
+        &:hover {
+            cursor: pointer;
+        }
 
         &:disabled {
             background-color: ${props => props.theme["gray-300"]};
