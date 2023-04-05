@@ -42,7 +42,12 @@ type ProjectsFilterDTO = {
 
 export function Projects() {
     const [isFormDisabled, setIsFormDisabled] = useState(true)
-    const [projects, setProjects] = useState<ProjectData[]>([])
+    const [projectsData, setProjectsData] = useState<ProjectResponse>({
+        projetos: [],
+        paginaAtual: 0,
+        totalItens: 0,
+        totalPaginas: 0
+    })
     const [isLoadingProjectsRequest, setIsLoadingProjectsRequest] = useState(true)
     const [titleValue, setTitleValue] = useState('')
     const [initialDateValue, setInicialDateValue] = useState<Dayjs | null>(null);
@@ -50,7 +55,6 @@ export function Projects() {
     const [projectFilterDTO, setProjectFilterDTO] = useState<ProjectsFilterDTO>({
         size: 5
     })
-    const [projectsCount, setProjectsCount] = useState(0)
     const [projectsPage, setProjectsPage] = useState(0)
 
     function incrementProjectsFilterUrl(projectFilterDTO: ProjectsFilterDTO) {
@@ -84,8 +88,8 @@ export function Projects() {
             .then(res => {
                 const data: ProjectResponse = res.data
 
-                setProjects(data.projetos)
-                setProjectsCount(data.totalItens)
+                setProjectsData(data)
+
                 setProjectsPage(data.paginaAtual + 1)
                 setIsLoadingProjectsRequest(false)
                 setIsFormDisabled(false)
@@ -161,7 +165,7 @@ export function Projects() {
 
     const isProjectFilterDTOEmpty = Object.values(projectFilterDTO).length === 1
 
-    const totalPages = Math.ceil(projectsCount / projectFilterDTO.size)
+    const totalPages = Math.ceil(projectsData.totalItens / projectFilterDTO.size)
 
     return (
         <ProjectsContainer>
@@ -271,7 +275,7 @@ export function Projects() {
                         <>
                             <ul className="projects-list">
                             {
-                                projects.map(project => (
+                                projectsData.projetos.map(project => (
                                     <li key={project.id}>
                                         <Project 
                                             id={project.id}
