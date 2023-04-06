@@ -41,7 +41,7 @@ export const ProjectsAside = styled.aside`
 
 export const ProjectsMain = styled.main`
     *[aria-disabled="true"] {
-        filter: blur(5px);
+        filter: blur(3px);
         cursor: not-allowed;
     }
 
@@ -59,7 +59,7 @@ export const ProjectsMain = styled.main`
     }
     
     /* .projects-list[aria-disabled="true"] {
-        filter: blur(5px);
+        filter: blur(3px);
     } */
 `
 

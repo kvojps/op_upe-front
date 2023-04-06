@@ -96,17 +96,16 @@ export function Projects() {
             .then(res => {
                 const data: ProjectResponse = res.data
 
-                setProjectsData(data)
-
                 if (data.totalPaginas < projectsPage) {
                     setProjectsPage(1)
-
+                    
                     setProjectFilterDTO(state => ({
                         ...state,
                         page: 0
                     }))
                 }
 
+                setProjectsData(data)
                 setIsLoadingProjectsRequest(false)
                 setIsFormDisabled(false)
             })
@@ -163,17 +162,37 @@ export function Projects() {
     }
 
     function handleChangeSelectedCategory(category: string) {
-        setProjectFilterDTO(state => ({
-            ...state,
-            areaTematica: category
-        }))
+        setProjectFilterDTO(state => {
+            if (category === '') {
+                const { areaTematica, ...rest } = state
+    
+                return {
+                    ...rest
+                }
+            }
+
+            return {
+                ...state,
+                areaTematica: category
+            }
+        })
     }
 
     function handleChangeSelectedModality(modality: string) {
-        setProjectFilterDTO(state => ({
-            ...state,
-            modalidade: modality
-        }))
+        setProjectFilterDTO(state => {
+            if (modality === '') {
+                const { modalidade, ...rest } = state
+    
+                return {
+                    ...rest
+                }
+            }
+
+            return {
+                ...state,
+                modalidade: modality
+            }
+        })
     }
 
     function handleChangePage(_: React.ChangeEvent<unknown>, value: number) {
@@ -326,11 +345,24 @@ export function Projects() {
                 </ProjectsAside>
                 <ProjectsMain>
                     {
-                        isLoadingProjectsRequest && 
-                        isProjectFilterDTOEmpty &&
-                        projectsData.projetos.length === 0 ?
-                        <Loader />
+                        (
+                            isLoadingProjectsRequest && 
+                            isProjectFilterDTOEmpty &&
+                            projectsData.projetos.length === 0
+                        )
+
+                        || 
+                        
+                        (
+                            isLoadingProjectsRequest &&
+                            projectsData.projetos.length === 0 &&
+                            projectsPage === 1
+                        )
+
+                        ?
+                            <Loader />
                         :
+
                         <>
                             <ul aria-disabled={isLoadingProjectsRequest} className="projects-list">
                             {
