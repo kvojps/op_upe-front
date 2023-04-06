@@ -28,4 +28,5 @@ export interface PaginatorProps {
     count: number
     page: number
     handleChange: (event: React.ChangeEvent<unknown>, value: number) => void
+    disabled: boolean
 }

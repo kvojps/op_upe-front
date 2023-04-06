@@ -40,6 +40,11 @@ export const ProjectsAside = styled.aside`
 `
 
 export const ProjectsMain = styled.main`
+    *[aria-disabled="true"] {
+        filter: blur(5px);
+        cursor: not-allowed;
+    }
+
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -53,9 +58,9 @@ export const ProjectsMain = styled.main`
         gap: 1.5rem;
     }
     
-    .projects-list[aria-disabled="true"] {
+    /* .projects-list[aria-disabled="true"] {
         filter: blur(5px);
-    }
+    } */
 `
 
 export const ProjectsFilterBox = styled.div`

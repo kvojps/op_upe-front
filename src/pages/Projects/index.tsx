@@ -54,7 +54,8 @@ export function Projects() {
     const [initialDateValue, setInicialDateValue] = useState<Dayjs | null>(null);
     const [finalDateValue, setFinalDateValue] = useState<Dayjs | null>(null);
     const [projectFilterDTO, setProjectFilterDTO] = useState<ProjectsFilterDTO>({
-        size: 5
+        size: 5,
+        page: 0
     })
     const [projectsPage, setProjectsPage] = useState(1)
     const [selectedCategory, setSelectedCategory] = useState("")
@@ -70,7 +71,11 @@ export function Projects() {
         }
 
         entries.forEach(entrie => {
-            if (entrie[1] !== '') {
+            if (
+                entrie[1] !== '' && 
+                entrie[1] !== 0 &&
+                entrie[1] !== undefined
+            ) {
                 url += `${entrie[0]}=${entrie[1]}&`
             }
         })
@@ -91,6 +96,8 @@ export function Projects() {
             .then(res => {
                 const data: ProjectResponse = res.data
 
+                setProjectsData(data)
+
                 if (data.totalPaginas < projectsPage) {
                     setProjectsPage(1)
 
@@ -100,7 +107,6 @@ export function Projects() {
                     }))
                 }
 
-                setProjectsData(data)
                 setIsLoadingProjectsRequest(false)
                 setIsFormDisabled(false)
             })
@@ -122,7 +128,7 @@ export function Projects() {
             top: 0,
             behavior: 'smooth',
         })
-    }, [projectsPage])
+    }, [projectsPage, isFormDisabled])
 
     function validateDayjsDate(date: Dayjs | null): boolean {
         const result = date?.format('DD-MM-YYYY')
@@ -187,14 +193,15 @@ export function Projects() {
         setFinalDateValue(null)
 
         setProjectFilterDTO(state => ({
-            size: 5
+            size: 5,
+            page: state.page
         }))
     }
 
     const dateInputHasInvalidDate = !validateDayjsDate(initialDateValue) ||
         !validateDayjsDate(finalDateValue)
 
-    const isProjectFilterDTOEmpty = Object.values(projectFilterDTO).length === 1
+    const isProjectFilterDTOEmpty = Object.values(projectFilterDTO).length === 2
 
     return (
         <ProjectsContainer>
@@ -319,7 +326,9 @@ export function Projects() {
                 </ProjectsAside>
                 <ProjectsMain>
                     {
-                        isLoadingProjectsRequest && isProjectFilterDTOEmpty ?
+                        isLoadingProjectsRequest && 
+                        isProjectFilterDTOEmpty &&
+                        projectsData.projetos.length === 0 ?
                         <Loader />
                         :
                         <>
@@ -339,7 +348,12 @@ export function Projects() {
                                 ))
                             }
                             </ul>
-                            <Paginator page={projectsPage} count={projectsData.totalPaginas} handleChange={handleChangePage} />
+                            <Paginator
+                                disabled={isFormDisabled}
+                                page={projectsPage} 
+                                count={projectsData.totalPaginas} 
+                                handleChange={handleChangePage} 
+                            />
                         </>
                     }
                 </ProjectsMain>
