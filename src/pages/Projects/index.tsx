@@ -2,7 +2,7 @@ import { Comment } from "../../components/Comment";
 import { Paginator } from "../../components/mui/Paginator";
 import { Project } from "../../components/Project";
 import { getTimeDifferenceFromNowPTBR } from "../../utils/formate-date";
-import { ProjectsAside, ProjectsContainer, ProjectsContent, ProjectsFilterBox, ProjectsFilterDateForm, ProjectsMain } from "./styles";
+import { ProjectsAside, ProjectsContainer, ProjectsContent, ProjectsFilterBox, ProjectsFilterDateForm, ProjectsFilterTags, ProjectsMain } from "./styles";
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -32,13 +32,19 @@ type ProjectResponse = {
 }
 
 type ProjectsFilterDTO = {
-    title?: string,
+    titulo?: string,
     areaTematica?: string,
     dataFim?: string,
     dataInicio?: string,
     modalidade?: string,
-    page?: number,
+    page: number,
     size: number
+}
+
+type FilterTag = {
+    name: string
+    value: string | number
+    initialSetter: () => void
 }
 
 export function Projects() {
@@ -96,7 +102,10 @@ export function Projects() {
             .then(res => {
                 const data: ProjectResponse = res.data
 
-                if (data.totalPaginas < projectsPage) {
+                if (
+                    data.totalPaginas < projectsPage &&
+                    data.totalPaginas !== 0
+                ) {
                     setProjectsPage(1)
                     
                     setProjectFilterDTO(state => ({
@@ -157,7 +166,7 @@ export function Projects() {
 
         setProjectFilterDTO(state => ({
             ...state,
-            title: titleValue
+            titulo: titleValue
         }))
     }
 
@@ -217,10 +226,101 @@ export function Projects() {
         }))
     }
 
+    function setInitialTitleValue() {
+        setTitleValue('')
+
+        setProjectFilterDTO(state => {
+            const { titulo, ...rest } = state
+
+            return {
+                ...rest
+            }
+        })
+    }
+
+    function setInitialDatesValue() {
+        setInicialDateValue(null)
+        setFinalDateValue(null)
+
+        setProjectFilterDTO(state => {
+            const { dataInicio, dataFim, ...rest } = state
+
+            return {
+                ...rest
+            }
+        })
+    }
+
+    function setInitialCategoryValue() {
+        setSelectedCategory('')
+
+        setProjectFilterDTO(state => {
+            const { areaTematica, ...rest } = state
+
+            return {
+                ...rest
+            }
+        })
+    }
+
+    function setInitialModalityValue() {
+        setSelectedModality('')
+
+        setProjectFilterDTO(state => {
+            const { modalidade, ...rest } = state
+
+            return {
+                ...rest
+            }
+        })
+    }
+
+    function getInitialSetterByTagName(name: string) {
+        switch(name) {
+            case "titulo":
+                return setInitialTitleValue
+            case "modalidade":
+                return setInitialModalityValue
+            case "areaTematica":
+                return setInitialCategoryValue
+            case "date":
+                setInitialDatesValue
+            default:
+                return () => {}
+        }
+    }
+
+    function getFilterTags() {
+        const entries = Object.entries(projectFilterDTO)
+        const validKeys = ['titulo', 'modalidade', 'areaTematica']
+
+        const validEntries = entries.filter(entrie => (
+            validKeys.includes(entrie[0])
+        ))
+
+        const tags: FilterTag[] = validEntries.map(entrie => ({
+            name: entrie[0],
+            value: entrie[1],
+            initialSetter: getInitialSetterByTagName(entrie[0])
+        }))
+
+        if (projectFilterDTO.dataInicio && projectFilterDTO.dataFim) {
+            tags.push({
+                name: 'date',
+                value: `${projectFilterDTO.dataInicio} ~ ${projectFilterDTO.dataFim}`,
+                initialSetter: getInitialSetterByTagName('date')
+            })
+        }
+
+        return tags
+    }
+
     const dateInputHasInvalidDate = !validateDayjsDate(initialDateValue) ||
         !validateDayjsDate(finalDateValue)
 
     const isProjectFilterDTOEmpty = Object.values(projectFilterDTO).length === 2
+
+    const filterTags = getFilterTags()
 
     return (
         <ProjectsContainer>
@@ -234,6 +334,7 @@ export function Projects() {
                         >
                             <div>
                                 <input
+                                    maxLength={40}
                                     disabled={isFormDisabled}
                                     type="text" 
                                     placeholder="Escreva um título..."
@@ -364,22 +465,42 @@ export function Projects() {
                         :
 
                         <>
-                            <ul aria-disabled={isLoadingProjectsRequest} className="projects-list">
+                            <ProjectsFilterTags
+                                aria-disabled={isLoadingProjectsRequest}
+                            >
+                                {
+                                    filterTags.map(filterTag => (
+                                        <li 
+                                            key={filterTag.name}
+                                            onClick={filterTag.initialSetter}
+                                        >
+                                            <p>{filterTag.value}</p>
+                                            <XCircle />
+                                        </li>
+                                    ))
+                                }
+                            </ProjectsFilterTags>
                             {
-                                projectsData.projetos.map(project => (
-                                    <li key={project.id}>
-                                        <Project 
-                                            id={project.id}
-                                            authorName={project.autor}
-                                            category={project.areaTematica}
-                                            createdAt={new Date(project.dataInicio)}
-                                            introduction={project.introducao}
-                                            title={project.titulo}
-                                        />
-                                    </li>
-                                ))
+                                projectsData.projetos.length !== 0 ?
+                                <ul aria-disabled={isLoadingProjectsRequest} className="projects-list">
+                                    {
+                                        projectsData.projetos.map(project => (
+                                            <li key={project.id}>
+                                                <Project 
+                                                    id={project.id}
+                                                    authorName={project.autor}
+                                                    category={project.areaTematica}
+                                                    createdAt={new Date(project.dataInicio)}
+                                                    introduction={project.introducao}
+                                                    title={project.titulo}
+                                                />
+                                            </li>
+                                        ))
+                                    }
+                                </ul>
+                                :
+                                <h1>Não encontramos nenhum projeto...</h1>
                             }
-                            </ul>
                             <Paginator
                                 disabled={isFormDisabled}
                                 page={projectsPage} 

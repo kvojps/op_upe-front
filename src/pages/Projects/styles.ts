@@ -158,3 +158,28 @@ export const ProjectsFilterDateForm = styled.form`
         }
     }
 `
+
+export const ProjectsFilterTags = styled.ul`
+    &[aria-disabled="true"] {
+        * {
+            cursor: not-allowed;
+        }
+    }
+
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+
+    li {
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        background-color: ${props => props.theme["gray-100"]};
+        border-radius: 8px;
+        padding: 0.4rem;
+        cursor: pointer;
+    }
+`
