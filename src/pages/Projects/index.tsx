@@ -301,7 +301,7 @@ export function Projects() {
             case "areaTematica":
                 return setInitialCategoryValue
             case "date":
-                setInitialDatesValue
+                return setInitialDatesValue
             default:
                 return () => {}
         }
