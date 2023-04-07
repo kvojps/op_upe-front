@@ -13,6 +13,7 @@ import { client } from "../../client/client";
 import { Loader } from "../../components/Loader";
 import { Dayjs } from 'dayjs';
 import { XCircle } from "@phosphor-icons/react";
+import { NavLink } from "react-router-dom";
 
 type ProjectData = {
     id: number
@@ -66,6 +67,7 @@ export function Projects() {
     const [projectsPage, setProjectsPage] = useState(1)
     const [selectedCategory, setSelectedCategory] = useState("")
     const [selectedModality, setSelectedModality] = useState("")
+    const [recentProjects, setRecentProjects] = useState<ProjectData[]>([])
 
     function incrementProjectsFilterUrl(projectFilterDTO: ProjectsFilterDTO) {
         let url = '/projeto/filtro'
@@ -124,6 +126,21 @@ export function Projects() {
                 console.log(err)
             })
     }
+
+    async function fetchRecentProjects() {
+        await client
+            .get('/projeto/recentes')
+            .then(res => {
+                const data: ProjectData[] = res.data
+
+                setRecentProjects(data)
+            })
+            .catch(e => console.log(e))
+    }
+
+    useEffect(() => {
+        fetchRecentProjects()
+    }, [])
 
     useEffect(() => {
         const url = incrementProjectsFilterUrl(projectFilterDTO)
@@ -425,11 +442,25 @@ export function Projects() {
                             </button>
                         </ProjectsFilterDateForm>
                     </ProjectsFilterBox>
-                    <span>Posts Recentes</span>
-                    <ul>
-                        <li>Desafios e inovações no ensino de história no período de pandemia</li>
-                        <li>FATORES DE REINCIDÊNCIA DE GARDNERELLA VAGINALIS</li>
-                    </ul>
+                    {
+                        recentProjects.length > 0 &&
+                        <>
+                            <span>Posts Recentes</span>
+                            <ul>
+                                {
+                                    recentProjects.slice(0, 5).map(project => (
+                                        <li 
+                                            key={project.id}
+                                        >
+                                            <NavLink to={'/projetos/' + project.id}>
+                                                {project.titulo}
+                                            </NavLink>
+                                        </li>
+                                    ))
+                                }
+                            </ul>
+                        </>
+                    }
                     <span>Comentários recentes</span>
                     <ul>
                         <li>
@@ -465,21 +496,24 @@ export function Projects() {
                         :
 
                         <>
-                            <ProjectsFilterTags
-                                aria-disabled={isLoadingProjectsRequest}
-                            >
-                                {
-                                    filterTags.map(filterTag => (
-                                        <li 
-                                            key={filterTag.name}
-                                            onClick={filterTag.initialSetter}
-                                        >
-                                            <p>{filterTag.value}</p>
-                                            <XCircle />
-                                        </li>
-                                    ))
-                                }
-                            </ProjectsFilterTags>
+                            {
+                                filterTags.length > 0 &&
+                                <ProjectsFilterTags
+                                    aria-disabled={isLoadingProjectsRequest}
+                                >
+                                    {
+                                        filterTags.map(filterTag => (
+                                            <li 
+                                                key={filterTag.name}
+                                                onClick={filterTag.initialSetter}
+                                            >
+                                                <p>{filterTag.value}</p>
+                                                <XCircle />
+                                            </li>
+                                        ))
+                                    }
+                                </ProjectsFilterTags>
+                            }
                             {
                                 projectsData.projetos.length !== 0 ?
                                 <ul aria-disabled={isLoadingProjectsRequest} className="projects-list">

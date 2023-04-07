@@ -16,7 +16,10 @@ export const ProjectsAside = styled.aside`
     border: 1px solid ${props => props.theme["gray-300"]};
     border-radius: 8px;
     padding: 1rem;
-    max-height: 48.75rem;
+    grid-row: 1;
+    grid-column: 1;
+    height: auto;
+    align-self: start;
 
     display: flex;
     flex-direction: column;
@@ -37,6 +40,10 @@ export const ProjectsAside = styled.aside`
     ul li {
         text-align: justify;
     }
+
+    ul li a {
+        color: black;
+    }
 `
 
 export const ProjectsMain = styled.main`
@@ -45,6 +52,8 @@ export const ProjectsMain = styled.main`
         cursor: not-allowed;
     }
 
+    grid-column: 2;
+    align-self: stretch;
     display: flex;
     align-items: center;
     flex-direction: column;
