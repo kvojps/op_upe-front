@@ -49,14 +49,13 @@ type FilterTag = {
 }
 
 export function Projects() {
-    const [isFormDisabled, setIsFormDisabled] = useState(true)
+    const [isLoadingProjectsRequest, setIsLoadingProjectsRequest] = useState(true)
     const [projectsData, setProjectsData] = useState<ProjectResponse>({
         projetos: [],
         paginaAtual: 0,
         totalItens: 0,
         totalPaginas: 0
     })
-    const [isLoadingProjectsRequest, setIsLoadingProjectsRequest] = useState(true)
     const [titleValue, setTitleValue] = useState('')
     const [initialDateValue, setInicialDateValue] = useState<Dayjs | null>(null);
     const [finalDateValue, setFinalDateValue] = useState<Dayjs | null>(null);
@@ -97,7 +96,6 @@ export function Projects() {
 
     async function fetchProjects(url: string) {
         setIsLoadingProjectsRequest(true)
-        setIsFormDisabled(true)
 
         await client
             .get(url)
@@ -118,11 +116,9 @@ export function Projects() {
 
                 setProjectsData(data)
                 setIsLoadingProjectsRequest(false)
-                setIsFormDisabled(false)
             })
             .catch(err => {
                 setIsLoadingProjectsRequest(false)
-                setIsFormDisabled(false)
                 console.log(err)
             })
     }
@@ -153,7 +149,7 @@ export function Projects() {
             top: 0,
             behavior: 'smooth',
         })
-    }, [projectsPage, isFormDisabled])
+    }, [projectsPage, isLoadingProjectsRequest])
 
     function validateDayjsDate(date: Dayjs | null): boolean {
         const result = date?.format('DD-MM-YYYY')
@@ -352,7 +348,7 @@ export function Projects() {
                             <div>
                                 <input
                                     maxLength={40}
-                                    disabled={isFormDisabled}
+                                    disabled={isLoadingProjectsRequest}
                                     type="text" 
                                     placeholder="Escreva um título..."
                                     value={titleValue}
@@ -360,7 +356,7 @@ export function Projects() {
                                 />
                                 <button
                                     type="submit"
-                                    disabled={titleValue === '' || isFormDisabled ? true : false}
+                                    disabled={titleValue === '' || isLoadingProjectsRequest ? true : false}
                                 >
                                     Pesquisar
                                 </button>
@@ -370,7 +366,7 @@ export function Projects() {
                                 <button
                                     type="button"
                                     onClick={handleRemoveFilters}
-                                    disabled={isFormDisabled}
+                                    disabled={isLoadingProjectsRequest}
                                 >
                                     <p>Remover Filtros</p>
                                     <XCircle />
@@ -383,7 +379,7 @@ export function Projects() {
                                 setSelectedCategory(e.target.value)
                                 handleChangeSelectedCategory(e.target.value)
                             }}
-                            disabled={isFormDisabled} 
+                            disabled={isLoadingProjectsRequest} 
                             name="select-categories" 
                             id="select-categories"
                         >
@@ -398,7 +394,7 @@ export function Projects() {
                                 setSelectedModality(e.target.value)
                                 handleChangeSelectedModality(e.target.value)
                             }}
-                            disabled={isFormDisabled} 
+                            disabled={isLoadingProjectsRequest} 
                             name="select-modalities" 
                             id="select-modalities"
                         >
@@ -414,7 +410,7 @@ export function Projects() {
                             <LocalizationProvider dateAdapter={AdapterDayjs}>
                                 <DemoContainer components={['DatePicker']}>
                                     <DatePicker
-                                        disabled={isFormDisabled}
+                                        disabled={isLoadingProjectsRequest}
                                         format="DD / MM / YYYY" 
                                         label="Data Inicial" 
                                         sx={{ width: "100%" }}
@@ -424,7 +420,7 @@ export function Projects() {
                                 </DemoContainer>
                                 <DemoContainer components={['DatePicker']}>
                                     <DatePicker
-                                        disabled={isFormDisabled}
+                                        disabled={isLoadingProjectsRequest}
                                         format="DD / MM / YYYY" 
                                         label="Data Final" 
                                         sx={{ width: "100%" }}
@@ -434,7 +430,7 @@ export function Projects() {
                                 </DemoContainer>
                             </LocalizationProvider>
                             <button 
-                                disabled={dateInputHasInvalidDate || isFormDisabled} 
+                                disabled={dateInputHasInvalidDate || isLoadingProjectsRequest} 
                                 className="filter-date-button" 
                                 type="submit"
                             >
@@ -536,7 +532,7 @@ export function Projects() {
                                 <h1>Não encontramos nenhum projeto...</h1>
                             }
                             <Paginator
-                                disabled={isFormDisabled}
+                                disabled={isLoadingProjectsRequest}
                                 page={projectsPage} 
                                 count={projectsData.totalPaginas} 
                                 handleChange={handleChangePage} 
