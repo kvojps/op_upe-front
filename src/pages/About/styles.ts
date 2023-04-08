@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const AboutContainer = styled.div`
-    margin: 4rem 8rem 0rem 8rem;
+    margin: 0 auto;
     max-width: 70vw;
 `
 
@@ -9,12 +9,29 @@ export const AboutContent = styled.div`
     font-size: 1.2rem;
     width: 70vw;
     margin-bottom: 4rem;
+
+    h1 {
+        color: #000;
+    }
+
+    p {
+        color: #000;
+        text-align: justify;
+    }
+`
+
+export const AboutBookAndTittle = styled.div`
+    display: flex;
+
+    h1 {
+        margin-left: 1rem;
+    }
 `
 
 export const AboutContainerCards = styled.div`
     display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(20vw, 1fr));
-	gap: 2rem;
+	gap: 3rem;
 	padding-inline-start: 0;
     width: 70vw;
 `
@@ -29,9 +46,4 @@ export const AboutContentH3 = styled.h3`
     margin: 0 auto;
     font-weight: 700;
     color: #dd6b20;
-`
-
-export const AboutContentCitation = styled.div`
-    font-size: 1.5rem;
-    margin: 0 10rem;
 `
