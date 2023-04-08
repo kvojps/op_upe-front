@@ -6,7 +6,7 @@ export const CardContainer = styled.div`
     margin: 1rem;
     justify-items: center;
     align-items: center;
-    background-color: #D3D3D3;
+    background-color: #fbf9f6;
     border-radius: 1rem;
     
 `
@@ -20,13 +20,14 @@ export const CardImage = styled.img`
 `
 
 export const CardTitle = styled.h1`
+    font-size: 1.5rem;
     color: #dd6b20;
     text-align: center;
-    
-
 `
 
-export const CardDescription = styled.span`
+export const CardDescription = styled.div`
+    font-size: 1rem;
     text-align: center;
-    text-justify: center;
+    font-weight: bold;
+    color: #dd6b20;
 `
