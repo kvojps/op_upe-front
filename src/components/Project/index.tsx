@@ -59,7 +59,7 @@ export function Project({
                     <p>{introduction}</p>
                 </ProjectMain>
                 <ProjectFooter>
-                    <button onClick={() => navigate(`/projeto/${id}`)}>
+                    <button onClick={() => navigate(`/projetos/${id}`)}>
                         <strong>LEIA MAIS</strong>
                         <ArrowRight size={32} />
                     </button>

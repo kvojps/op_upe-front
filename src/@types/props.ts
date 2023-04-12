@@ -1,2 +1,2 @@
 export type category = "EXTENSAO" | "INOVACAO" | "PESQUISA"
-export type modalities = "CURSO" | "EVENTO" | "OFICINA" | "PROGRAMA" | "PROJETO"
+export type modality = "CURSO" | "EVENTO" | "OFICINA" | "PROGRAMA" | "PROJETO"
