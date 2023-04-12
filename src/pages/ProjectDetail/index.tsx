@@ -171,7 +171,10 @@ export function ProjectDetail() {
                                             {
                                                 entries[0][0] === 'Link de Acesso' ?
                                                 <p>
-                                                    <a href={entries[0][1]}>
+                                                    <a 
+                                                        href={entries[0][1]}
+                                                        target={'_blank'}
+                                                    >
                                                         {entries[0][1]}
                                                     </a>
                                                 </p>
