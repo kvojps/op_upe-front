@@ -32,10 +32,10 @@ export function Header() {
                         </NavLink>
                     </nav>
 
-                    <NavLink to={"/"} >
-                            <button>
-                                ENTRAR
-                            </button>
+                    <NavLink to={"/entrar"} >
+                        <button>
+                            ENTRAR
+                        </button>
                     </NavLink>
                 </HeaderMain>
             </HeaderContent>
