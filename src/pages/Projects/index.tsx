@@ -12,8 +12,9 @@ import { category } from "../../@types/props"
 import { client } from "../../client/client";
 import { Loader } from "../../components/Loader";
 import { Dayjs } from 'dayjs';
-import { XCircle } from "@phosphor-icons/react";
+import { Faders, MagnifyingGlass, XCircle } from "@phosphor-icons/react";
 import { NavLink } from "react-router-dom";
+import { Dialog } from "@mui/material";
 
 type ProjectData = {
     id: number
@@ -67,6 +68,7 @@ export function Projects() {
     const [selectedCategory, setSelectedCategory] = useState("")
     const [selectedModality, setSelectedModality] = useState("")
     const [recentProjects, setRecentProjects] = useState<ProjectData[]>([])
+    const [isOpenDialog, setIsOpenDialog] = useState(false)
 
     function incrementProjectsFilterUrl(projectFilterDTO: ProjectsFilterDTO) {
         let url = '/projeto/filtro'
@@ -150,6 +152,14 @@ export function Projects() {
             behavior: 'smooth',
         })
     }, [projectsPage, isLoadingProjectsRequest])
+
+    const handleOpenDialog = () => {
+        setIsOpenDialog(true)
+    }
+    
+    const handleCloseDialog = () => {
+        setIsOpenDialog(false)
+    };
 
     function validateDayjsDate(date: Dayjs | null): boolean {
         const result = date?.format('DD-MM-YYYY')
@@ -328,6 +338,118 @@ export function Projects() {
         return tags
     }
 
+    function renderFilterBox() {
+        return (
+            <ProjectsAside>
+                <header>
+                    <h1>Caixa de Filtros</h1>
+                    <XCircle 
+                        size={32}
+                        onClick={handleCloseDialog}
+                    />
+                </header>
+                <ProjectsFilterBox>
+                    <select
+                        value={selectedCategory}
+                        onChange={(e) => {
+                            setSelectedCategory(e.target.value)
+                            handleChangeSelectedCategory(e.target.value)
+                        }}
+                        disabled={isLoadingProjectsRequest} 
+                        name="select-categories" 
+                        id="select-categories"
+                    >
+                        <option value="">Escolha uma Categoria</option>
+                        <option value="EXTENSAO">Extensão</option>
+                        <option value="INOVACAO">Inovação</option>
+                        <option value="PESQUISA">Pesquisa</option>
+                    </select>
+                    <select
+                        value={selectedModality}
+                        onChange={(e) => {
+                            setSelectedModality(e.target.value)
+                            handleChangeSelectedModality(e.target.value)
+                        }}
+                        disabled={isLoadingProjectsRequest} 
+                        name="select-modalities" 
+                        id="select-modalities"
+                    >
+                        <option value="">Escolha uma Modalidade</option>
+                        <option value="PROGRAMA">Programa</option>
+                        <option value="PROJETO">Projeto</option>
+                        <option value="CURSO">Curso</option>
+                        <option value="OFICINA">Oficina</option>
+                        <option value="EVENTO">Evento</option>
+                    </select>
+                    <ProjectsFilterDateForm onSubmit={handleSubmitFilterDate}>
+                        <h4>Filtre por Data</h4>
+                        <LocalizationProvider dateAdapter={AdapterDayjs}>
+                            <DemoContainer components={['DatePicker']}>
+                                <DatePicker
+                                    disabled={isLoadingProjectsRequest}
+                                    format="DD / MM / YYYY" 
+                                    label="Data Inicial" 
+                                    sx={{ width: "100%" }}
+                                    value={initialDateValue}
+                                    onChange={(dateObject) => setInicialDateValue(dateObject)}
+                                />
+                            </DemoContainer>
+                            <DemoContainer components={['DatePicker']}>
+                                <DatePicker
+                                    disabled={isLoadingProjectsRequest}
+                                    format="DD / MM / YYYY" 
+                                    label="Data Final" 
+                                    sx={{ width: "100%" }}
+                                    value={finalDateValue}
+                                    onChange={(dateObject) => setFinalDateValue(dateObject)}
+                                />
+                            </DemoContainer>
+                        </LocalizationProvider>
+                        <button 
+                            disabled={dateInputHasInvalidDate || isLoadingProjectsRequest} 
+                            className="filter-date-button" 
+                            type="submit"
+                        >
+                            Filtrar
+                        </button>
+                    </ProjectsFilterDateForm>
+                </ProjectsFilterBox>
+                {
+                    recentProjects.length > 0 &&
+                    <>
+                        <span>Posts Recentes</span>
+                        <ul>
+                            {
+                                recentProjects.slice(0, 5).map(project => (
+                                    <li 
+                                        key={project.id}
+                                    >
+                                        <NavLink to={'/projetos/' + project.id}>
+                                            {project.titulo}
+                                        </NavLink>
+                                    </li>
+                                ))
+                            }
+                        </ul>
+                    </>
+                }
+                <span>Comentários recentes</span>
+                <ul>
+                    <li>
+                        <Comment
+                            key={1}
+                            authorName="Rafira Developer"
+                            projectTitle="Projetinho publicado"
+                            text="Unbelievable!"
+                            timeDistanceToNow={getTimeDifferenceFromNowPTBR(new Date())}
+                            imageURL="https://github.com/rafa-souza-dev.png"
+                        />
+                    </li>
+                </ul>
+            </ProjectsAside>
+        )
+    }
+
     const dateInputHasInvalidDate = !validateDayjsDate(initialDateValue) ||
         !validateDayjsDate(finalDateValue)
 
@@ -338,140 +460,49 @@ export function Projects() {
     return (
         <ProjectsContainer>
             <ProjectsContent>
-                <ProjectsAside>
-                    <ProjectsFilterBox>
-                        <form
-                            onSubmit={handleSubmitTitleFilterForm}
-                            action="" 
-                            className="title-filter-form"
-                        >
-                            <div>
-                                <input
-                                    maxLength={40}
-                                    disabled={isLoadingProjectsRequest}
-                                    type="text" 
-                                    placeholder="Escreva um título..."
-                                    value={titleValue}
-                                    onChange={(e) => setTitleValue(e.target.value)}
-                                />
-                                <button
-                                    type="submit"
-                                    disabled={titleValue === '' || isLoadingProjectsRequest ? true : false}
-                                >
-                                    Pesquisar
-                                </button>
-                            </div>
-                            {
-                                !isProjectFilterDTOEmpty &&
-                                <button
-                                    type="button"
-                                    onClick={handleRemoveFilters}
-                                    disabled={isLoadingProjectsRequest}
-                                >
-                                    <p>Remover Filtros</p>
-                                    <XCircle />
-                                </button>
-                            }
-                        </form>
-                        <select
-                            value={selectedCategory}
-                            onChange={(e) => {
-                                setSelectedCategory(e.target.value)
-                                handleChangeSelectedCategory(e.target.value)
-                            }}
-                            disabled={isLoadingProjectsRequest} 
-                            name="select-categories" 
-                            id="select-categories"
-                        >
-                            <option value="">Escolha uma Categoria</option>
-                            <option value="EXTENSAO">Extensão</option>
-                            <option value="INOVACAO">Inovação</option>
-                            <option value="PESQUISA">Pesquisa</option>
-                        </select>
-                        <select
-                            value={selectedModality}
-                            onChange={(e) => {
-                                setSelectedModality(e.target.value)
-                                handleChangeSelectedModality(e.target.value)
-                            }}
-                            disabled={isLoadingProjectsRequest} 
-                            name="select-modalities" 
-                            id="select-modalities"
-                        >
-                            <option value="">Escolha uma Modalidade</option>
-                            <option value="PROGRAMA">Programa</option>
-                            <option value="PROJETO">Projeto</option>
-                            <option value="CURSO">Curso</option>
-                            <option value="OFICINA">Oficina</option>
-                            <option value="EVENTO">Evento</option>
-                        </select>
-                        <ProjectsFilterDateForm onSubmit={handleSubmitFilterDate}>
-                            <h4>Filtre por Data</h4>
-                            <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                <DemoContainer components={['DatePicker']}>
-                                    <DatePicker
-                                        disabled={isLoadingProjectsRequest}
-                                        format="DD / MM / YYYY" 
-                                        label="Data Inicial" 
-                                        sx={{ width: "100%" }}
-                                        value={initialDateValue}
-                                        onChange={(dateObject) => setInicialDateValue(dateObject)}
-                                    />
-                                </DemoContainer>
-                                <DemoContainer components={['DatePicker']}>
-                                    <DatePicker
-                                        disabled={isLoadingProjectsRequest}
-                                        format="DD / MM / YYYY" 
-                                        label="Data Final" 
-                                        sx={{ width: "100%" }}
-                                        value={finalDateValue}
-                                        onChange={(dateObject) => setFinalDateValue(dateObject)}
-                                    />
-                                </DemoContainer>
-                            </LocalizationProvider>
-                            <button 
-                                disabled={dateInputHasInvalidDate || isLoadingProjectsRequest} 
-                                className="filter-date-button" 
-                                type="submit"
-                            >
-                                Filtrar
-                            </button>
-                        </ProjectsFilterDateForm>
-                    </ProjectsFilterBox>
-                    {
-                        recentProjects.length > 0 &&
-                        <>
-                            <span>Posts Recentes</span>
-                            <ul>
-                                {
-                                    recentProjects.slice(0, 5).map(project => (
-                                        <li 
-                                            key={project.id}
-                                        >
-                                            <NavLink to={'/projetos/' + project.id}>
-                                                {project.titulo}
-                                            </NavLink>
-                                        </li>
-                                    ))
-                                }
-                            </ul>
-                        </>
-                    }
-                    <span>Comentários recentes</span>
-                    <ul>
-                        <li>
-                            <Comment
-                                key={1}
-                                authorName="Rafira Developer"
-                                projectTitle="Projetinho publicado"
-                                text="Unbelievable!"
-                                timeDistanceToNow={getTimeDifferenceFromNowPTBR(new Date())}
-                                imageURL="https://github.com/rafa-souza-dev.png"
-                            />
-                        </li>
-                    </ul>
-                </ProjectsAside>
+                {renderFilterBox()}
                 <ProjectsMain>
+                    <form
+                        onSubmit={handleSubmitTitleFilterForm}
+                        action="" 
+                        className="title-filter-form"
+                    >
+                        <div>
+                            <input
+                                maxLength={40}
+                                disabled={isLoadingProjectsRequest}
+                                type="text" 
+                                placeholder="Escreva um título..."
+                                value={titleValue}
+                                onChange={(e) => setTitleValue(e.target.value)}
+                            />
+                            <button
+                                className="submit-button"
+                                type="submit"
+                                disabled={titleValue === '' || isLoadingProjectsRequest ? true : false}
+                            >
+                                <MagnifyingGlass />
+                            </button>
+                            <button
+                                type="button"
+                                className="open-filter-box-button"
+                                onClick={handleOpenDialog}
+                            >
+                                <Faders />
+                            </button>
+                        </div>
+                        {
+                            !isProjectFilterDTOEmpty &&
+                            <button
+                                type="button"
+                                onClick={handleRemoveFilters}
+                                disabled={isLoadingProjectsRequest}
+                            >
+                                <p>Remover Filtros</p>
+                                <XCircle />
+                            </button>
+                        }
+                    </form>
                     {
                         (
                             isLoadingProjectsRequest && 
@@ -541,6 +572,12 @@ export function Projects() {
                     }
                 </ProjectsMain>
             </ProjectsContent>
+            <Dialog
+                open={isOpenDialog}
+                onClose={handleCloseDialog}
+            >
+                {renderFilterBox()}
+            </Dialog>
         </ProjectsContainer>
     )
 }

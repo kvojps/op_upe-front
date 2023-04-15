@@ -17,6 +17,7 @@ export const ProjectHeader = styled.div`
     gap: 0.5rem;
 
     h1 {
+        text-align: justify;
         color: ${props => props.theme.black};
     }
 
