@@ -19,8 +19,11 @@ export const HeaderMain = styled.main`
         align-items: center;
         gap: 1.8rem;
 
+        div {
+            display: none;
+        }
+
         a {
-            display: flex;
             text-decoration: none;
             color: ${(props) => props.theme['white']};
             transition: 0.5s;
@@ -29,7 +32,6 @@ export const HeaderMain = styled.main`
                 font-size: 1.2rem;
                 font-weight: 400;
             }
-
 
             &:hover {
                 color: ${props => props.theme["red-200"]};
@@ -57,6 +59,28 @@ export const HeaderMain = styled.main`
             transition: 1.2s;
             filter: brightness(1.3);
             /* background-color: ${props => props.theme["gray-50"]}; */
+        }
+    }
+
+    @media screen and (max-width: 790px) {
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.7rem;
+        }
+
+        nav div {
+            display: block;
+        }
+
+        nav a {
+            display: none;
+
+            &.active {
+                color: ${(props) => props.theme['white']};
+                display: block;
+            }
         }
     }
 `
