@@ -35,7 +35,7 @@ export const ProjectsAside = styled.aside`
     flex-direction: column;
     gap: 2rem;
 
-    header {
+    .handle-close-header {
         display: none;
     }
 
@@ -64,7 +64,7 @@ export const ProjectsAside = styled.aside`
     }
 
     @media screen and (max-width: 949px) {
-        header {
+        .handle-close-header {
             display: flex;
             align-items: center;
             justify-content: space-between;

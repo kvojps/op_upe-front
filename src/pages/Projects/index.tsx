@@ -341,7 +341,7 @@ export function Projects() {
     function renderFilterBox() {
         return (
             <ProjectsAside>
-                <header>
+                <header className="handle-close-header">
                     <h1>Caixa de Filtros</h1>
                     <XCircle 
                         size={32}
