@@ -20,10 +20,12 @@ export const DashboardSummary = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-around;
+    gap: 1rem;
+    flex-wrap: wrap;
 `
 
 export const DashboardCard = styled.div`
-    min-width: 10rem;
+    width: 10rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -43,6 +45,14 @@ export const DashboardCard = styled.div`
 
     svg {
         color: ${props => props.theme.blue};
+    }
+
+    @media screen and (max-width: 949px) {
+        width: 6rem;
+
+        h1 {
+            font-size: 1rem;
+        }
     }
 `
 

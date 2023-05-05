@@ -7,6 +7,18 @@ import { useEffect, useState } from 'react'
 import { client } from '../../client/client'
 import { Loader } from '../../components/Loader'
 
+type DashboardData = {
+  totalCourses: number;
+  totalCampuses: number;
+  totalProjects: number;
+  totalUsers: number;
+
+  projectsPerCourses: object;
+  projectsPerCampuses: object;
+  projectsPerModalities: object;
+  projectsPerThematicArea: object;
+}
+
 export function Dashboard() {
     const [dashboardData, setDashboardData] = useState<DashboardData>({
       projectsPerCampuses: {},
@@ -21,18 +33,6 @@ export function Dashboard() {
 
     const [isLoading, setIsLoading] = useState(true)
 
-    type DashboardData = {
-        totalCourses: number;
-        totalCampuses: number;
-        totalProjects: number;
-        totalUsers: number;
-
-        projectsPerCourses: object;
-        projectsPerCampuses: object;
-        projectsPerModalities: object;
-        projectsPerThematicArea: object;
-    }
-
     async function getDashboardData() {
         await client
             .get('/dashboard')
@@ -43,7 +43,8 @@ export function Dashboard() {
                 setIsLoading(false)
             })
             .catch(err => {
-                alert(err)
+                // alert(err)
+                console.log(err)
                 setIsLoading(false)
             })
     }
