@@ -91,8 +91,7 @@ export const ProjectDetailMain = styled.main`
     gap: 1rem;
 
     img {
-        width: 80%;
-        margin: 0 auto;
+        display: none;
     }
 `
 

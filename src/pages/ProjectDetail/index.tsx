@@ -126,7 +126,7 @@ export function ProjectDetail() {
                         <h1>{projectDetailData.titulo}</h1>
                         <span>{projectDetailData.areaTematica}</span>
                         <div>
-                            <p>{`By ${projectDetailData.autor}`}</p>
+                            <p>{`Por ${projectDetailData.autor}`}</p>
                             <p>{initialProjectDatePTBR}</p>
                         </div>
                     </ProjectDetailHeaderInfo>
@@ -148,42 +148,34 @@ export function ProjectDetail() {
                 <ProjectDetailMain>
                     <img src={inovacao} alt="" />
                     <ProjectDetailDataList>
-                        <li>
-                            <h2>Resumo</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae soluta provident nobis nostrum eos dolorum, pariatur debitis tempore inventore dicta optio mollitia, quisquam et incidunt tempora fuga! Odit, harum libero!</p>
-                        </li>
-                        <li>
-                            <h2>Introdução</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae soluta provident nobis nostrum eos dolorum, pariatur debitis tempore inventore dicta optio mollitia, quisquam et incidunt tempora fuga! Odit, harum libero!</p>
-                        </li>
                         {
                             listableInfo.map(info => {
                                 const { id, ...rest } = info
 
                                 const entries = Object.entries(rest)
 
-                                console.log(entries)
-
-                                return (
-                                    <li key={info.id}>
-                                        <h2>{entries[0][0]}</h2>
-                                        <p>
-                                            {
-                                                entries[0][0] === 'Link de Acesso' ?
-                                                <p>
-                                                    <a 
-                                                        href={entries[0][1]}
-                                                        target={'_blank'}
-                                                    >
-                                                        {entries[0][1]}
-                                                    </a>
-                                                </p>
-                                                :
-                                                <p>{entries[0][1]}</p>
-                                            }
-                                        </p>
-                                    </li>
-                                )
+                                if (entries[0][1] !== '' && entries[0][1] !== 'N') {
+                                    return (
+                                        <li key={info.id}>
+                                            <h2>{entries[0][0]}</h2>
+                                            <p>
+                                                {
+                                                    entries[0][0] === 'Link de Acesso' ?
+                                                    <p>
+                                                        <a 
+                                                            href={entries[0][1]}
+                                                            target={'_blank'}
+                                                        >
+                                                            {entries[0][1]}
+                                                        </a>
+                                                    </p>
+                                                    :
+                                                    <p>{entries[0][1]}</p>
+                                                }
+                                            </p>
+                                        </li>
+                                    )
+                                }
                             })
                         }
                     </ProjectDetailDataList>

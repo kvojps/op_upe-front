@@ -37,10 +37,6 @@ export function Header() {
             navigate: () => navigate('/projetos')
         },
         {
-            name: 'Contato',
-            navigate: () => navigate('/contato')
-        },
-        {
             name: 'Sobre',
             navigate: () => navigate('/sobre')
         }
@@ -110,10 +106,6 @@ export function Header() {
                             <h1>Projetos</h1>
                         </NavLink>
 
-                        <NavLink to={"/contato"} >
-                            <h1>Contato</h1>
-                        </NavLink>
-
                         <NavLink to={"/sobre"} >
                             <h1>Sobre</h1>
                         </NavLink>
@@ -122,9 +114,6 @@ export function Header() {
                     </nav>
 
                     <NavLink to={"/entrar"} >
-                        <button>
-                            ENTRAR
-                        </button>
                     </NavLink>
                 </HeaderMain>
             </HeaderContent>

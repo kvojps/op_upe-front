@@ -60,7 +60,7 @@ export const ProjectsAside = styled.aside`
     }
 
     ul li a {
-        color: black;
+        color: ${props => props.theme.blue};
     }
 
     @media screen and (max-width: 949px) {

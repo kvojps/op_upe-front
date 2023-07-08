@@ -174,8 +174,8 @@ export function Projects() {
     function handleSubmitFilterDate(event: FormEvent) {
         event.preventDefault();
 
-        const formattedInitialDate = initialDateValue?.format('DD-MM-YYYY')
-        const formattedFinalDate = finalDateValue?.format('DD-MM-YYYY')
+        const formattedInitialDate = initialDateValue?.format('YYYY-MM-DD')
+        const formattedFinalDate = finalDateValue?.format('YYYY-MM-DD')
 
         setProjectFilterDTO(state => ({
             ...state,
@@ -380,6 +380,7 @@ export function Projects() {
                         <option value="CURSO">Curso</option>
                         <option value="OFICINA">Oficina</option>
                         <option value="EVENTO">Evento</option>
+                        <option value="INDEFINIDO">Indefinido</option>
                     </select>
                     <ProjectsFilterDateForm onSubmit={handleSubmitFilterDate}>
                         <h4>Filtre por Data</h4>
@@ -387,7 +388,7 @@ export function Projects() {
                             <DemoContainer components={['DatePicker']}>
                                 <DatePicker
                                     disabled={isLoadingProjectsRequest}
-                                    format="DD / MM / YYYY" 
+                                    format="YYYY / MM / DD" 
                                     label="Data Inicial" 
                                     sx={{ width: "100%" }}
                                     value={initialDateValue}
@@ -397,7 +398,7 @@ export function Projects() {
                             <DemoContainer components={['DatePicker']}>
                                 <DatePicker
                                     disabled={isLoadingProjectsRequest}
-                                    format="DD / MM / YYYY" 
+                                    format="YYYY / MM / DD"
                                     label="Data Final" 
                                     sx={{ width: "100%" }}
                                     value={finalDateValue}
@@ -433,19 +434,6 @@ export function Projects() {
                         </ul>
                     </>
                 }
-                <span>Comentários recentes</span>
-                <ul>
-                    <li>
-                        <Comment
-                            key={1}
-                            authorName="Rafira Developer"
-                            projectTitle="Projetinho publicado"
-                            text="Unbelievable!"
-                            timeDistanceToNow={getTimeDifferenceFromNowPTBR(new Date())}
-                            imageURL="https://github.com/rafa-souza-dev.png"
-                        />
-                    </li>
-                </ul>
             </ProjectsAside>
         )
     }

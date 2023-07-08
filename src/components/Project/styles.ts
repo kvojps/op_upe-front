@@ -51,7 +51,7 @@ export const ProjectMain = styled.main`
     gap: 0.5rem;
 
     img {
-        width: 100%;
+        display: none;
     }
 
     p {

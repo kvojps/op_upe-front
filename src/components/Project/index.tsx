@@ -42,6 +42,8 @@ export function Project({
     const categoryDefaultValues = getCategoryDefaultValues(category)
     const selectedImageURL = imageURL ?? categoryDefaultValues.imageURL
     const formattedDate = convertDateToBRFormat(createdAt)
+    const formattedIntro = introduction.length >= 200 ? `${introduction.substring(0, 200)}...`
+        : introduction
 
     return (
         <ProjectContainer>
@@ -50,13 +52,13 @@ export function Project({
                     <h1>{title}</h1>
                     <span>{categoryDefaultValues.category}</span>
                     <div>
-                        <p>By {authorName}</p>
+                        <p>Por {authorName}</p>
                         <p>{formattedDate}</p>
                     </div>
                 </ProjectHeader>
                 <ProjectMain>
                     <img src={selectedImageURL} alt="" />
-                    <p>{introduction}</p>
+                    <p>{formattedIntro}</p>
                 </ProjectMain>
                 <ProjectFooter>
                     <button onClick={() => navigate(`/projetos/${id}`)}>

@@ -171,14 +171,14 @@ export function Dashboard() {
                         options={getChartOptions(getFilteredKeys(dashboardData.projectsPerCourses), 'Projetos por Curso')} 
                         series={[{data: getFilteredValues(dashboardData.projectsPerCourses)}]} 
                         type="bar" 
-                        height={380} 
+                        height={800} 
                     />
 
                     <Chart 
                         options={getChartOptions(getFilteredKeys(dashboardData.projectsPerCampuses), 'Projetos por Campus')} 
                         series={[{data: getFilteredValues(dashboardData.projectsPerCampuses)}]}
                         type="bar"
-                        height={380} 
+                        height={480} 
                     />
 
                 </DashboardMain>

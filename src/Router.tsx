@@ -14,9 +14,7 @@ export function Router() {
             <Routes>
                 <Route path='/' element={<DefaultLayout />} >
                   <Route path='/' element={<Home />} />
-                  <Route path='/contato' element={<Contact />} />
                   <Route path='/dashboard' element={<Dashboard />} />
-                  <Route path='/entrar' element={<SignIn />} />
                   <Route path='/projetos' element={<Projects />} />
                   <Route path='/projetos/:id' element={<ProjectDetail />} />
                   <Route path='/sobre' element={<About />} />
