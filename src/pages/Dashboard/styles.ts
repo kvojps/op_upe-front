@@ -13,7 +13,7 @@ export const DashboardContent = styled.div`
 export const DashboardMain = styled.main`
     display: flex;
     flex-direction: column;
-    gap: 2.5rem;
+    gap: 2rem;
 `
 
 export const DashboardSummary = styled.div`
@@ -21,7 +21,14 @@ export const DashboardSummary = styled.div`
     align-items: center;
     justify-content: space-around;
     gap: 1rem;
-    flex-wrap: wrap;
+    
+    @media screen and (max-width: 790px) {
+        padding: 0 2rem;
+        display: grid;
+        grid-template-columns: 50% 50%;
+        justify-items: center;
+        gap: 1rem;
+    }
 `
 
 export const DashboardCard = styled.div`
@@ -48,7 +55,8 @@ export const DashboardCard = styled.div`
     }
 
     @media screen and (max-width: 949px) {
-        width: 6rem;
+        box-sizing: content-box;
+        width: 5rem;
 
         h1 {
             font-size: 1rem;
@@ -58,6 +66,11 @@ export const DashboardCard = styled.div`
 
 export const PieChartsContainer = styled.div`
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
+
+    @media screen and (max-width: 790px) {
+        gap: 1rem;    
+    }
 `

@@ -18,7 +18,7 @@ export function PieChart({ title, series, labels }: PieChartProps) {
                         breakpoint: 520,
                         options: {
                             chart: {
-                                width: 300
+                                width: 250
                             },
                             legend: {
                                 position: 'bottom'
