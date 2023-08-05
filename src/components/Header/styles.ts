@@ -1,17 +1,21 @@
 import styled from "styled-components";
 
 export const HeaderContainer = styled.header`
-    background-color: ${props => props.theme.blue};
-    margin-bottom: 1rem;
+    background-color: ${props => props.theme["blue-500"]};
+    height: 5rem;
 `
 
-export const HeaderContent = styled.div``
-
-export const HeaderMain = styled.main`
-    padding-right: 1.5rem;
+export const HeaderContent = styled.div`
+    height: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 3rem;
+
+    h1 {
+        color: ${props => props.theme.white};
+        font-size: 1.25rem;
+    }
 
     nav {
         display: flex;
@@ -26,20 +30,20 @@ export const HeaderMain = styled.main`
         a {
             text-decoration: none;
             color: ${(props) => props.theme['white']};
-            transition: 0.5s;
 
             h1 {
                 font-size: 1.2rem;
                 font-weight: 400;
-            }
 
-            &:hover {
-                color: ${props => props.theme["red-200"]};
-            }
+                &:hover {
+                    color: ${props => props.theme["red-200"]};
+                    transition: 0.5s;
+                    transform: scale(1.1);
+                }
 
-            &.active {
-                transform: scale(1.1);
-                color: ${props => props.theme["red-200"]};
+                &.active {
+                    color: ${props => props.theme["red-200"]};
+                }
             }
         }
     }

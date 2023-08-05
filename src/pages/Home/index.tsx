@@ -1,36 +1,30 @@
-import { HomeContainer, HomeMain } from "./styles";
-import { ArrowFatRight } from "@phosphor-icons/react"
-import { NavLink } from "react-router-dom";
-import { HomeInfoBox } from "../../components/HomeContainer";
+import { HomeContainer, HomeContent, HomeHeader, LogoCircle, Summary, SummaryList } from "./styles";
+import homeLogo from '../../assets/home-logo.png'
+import vectorRight from '../../assets/vector-right.png'
 
 export function Home() {
     return (
         <HomeContainer>
-            <HomeContainer>
-                <HomeMain>
-                    <ul>
-                        <li>Extensão</li>
-                        <li>Pesquisa</li>
-                        <li>Inovação</li>
-                    </ul>
+            <img src={vectorRight} alt="" />
+            <HomeContent>
+                <HomeHeader>
+                    <LogoCircle>
+                        <img src={homeLogo} alt="" />
+                    </LogoCircle>
+                    <Summary>
+                        <SummaryList>
+                            <p>Extensão</p>
+                            <p>Pesquisa</p>
+                            <p>Inovação</p>
+                        </SummaryList>
 
-                    <h1>Observatório de Projetos UPE</h1>
+                        <h1>Observatório de Projetos UPE</h1>
 
-                    <em>OP-UPE : Conhecimento e transparência ao alcance de todos!</em>
+                        <span>OP-UPE: Conhecimento e transparência ao alcance de todos!</span>
+                    </Summary>
+                </HomeHeader>
 
-                    <div>
-                        <p>Conheça os projetos publicados</p>
-                        <NavLink to={"/projetos"}>
-                            <button>
-                                <span>Projetos</span>
-                                <ArrowFatRight size={24} />
-                            </button>
-                        </NavLink>
-                    </div>
-
-                    <HomeInfoBox />
-                </HomeMain>
-            </HomeContainer>
+            </HomeContent>
         </HomeContainer>
     )
 }

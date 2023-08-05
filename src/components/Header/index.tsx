@@ -1,6 +1,5 @@
 import { NavLink, useNavigate } from "react-router-dom";
-import { HeaderContainer, HeaderContent, HeaderMain } from "./styles";
-import logo from '../../assets/logo.svg'
+import { HeaderContainer, HeaderContent } from "./styles";
 import { useState } from "react";
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
@@ -89,33 +88,26 @@ export function Header() {
     return (
         <HeaderContainer>
             <HeaderContent>
-                <HeaderMain>
-                    <NavLink to={"/"} >
-                        <img src={logo} alt="" />
-                    </NavLink>
-                    <nav>
-                        <NavLink to={"/"} >
-                            <h1>Início</h1>
-                        </NavLink>
+              <h1>OP-UPE</h1>
+              <nav>
+                  <NavLink to={"/"} >
+                      <h1>Início</h1>
+                  </NavLink>
 
-                        <NavLink to={"/dashboard"} >
-                            <h1>Dashboard</h1>
-                        </NavLink>
+                  <NavLink to={"/dashboard"} >
+                      <h1>Dashboard</h1>
+                  </NavLink>
 
-                        <NavLink to={"/projetos"} >
-                            <h1>Projetos</h1>
-                        </NavLink>
+                  <NavLink to={"/projetos"} >
+                      <h1>Projetos</h1>
+                  </NavLink>
 
-                        <NavLink to={"/sobre"} >
-                            <h1>Sobre</h1>
-                        </NavLink>
+                  <NavLink to={"/sobre"} >
+                      <h1>Sobre</h1>
+                  </NavLink>
 
-                        {renderDropDownMenu()}
-                    </nav>
-
-                    <NavLink to={"/entrar"} >
-                    </NavLink>
-                </HeaderMain>
+                  {renderDropDownMenu()}
+              </nav>
             </HeaderContent>
         </HeaderContainer>
     )
