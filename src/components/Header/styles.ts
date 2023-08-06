@@ -1,8 +1,9 @@
 import styled from "styled-components";
 
 export const HeaderContainer = styled.header`
-    background-color: ${props => props.theme["blue-500"]};
+    background-color: ${props => props.theme["blue-700"]};
     height: 5rem;
+    margin-bottom: 1rem;
 `
 
 export const HeaderContent = styled.div`
@@ -10,7 +11,7 @@ export const HeaderContent = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 3rem;
+    padding: 0 3rem;
 
     h1 {
         color: ${props => props.theme.white};
