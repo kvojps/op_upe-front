@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import vectorRight from "../../assets/vector-right.png"
 
 export const HomeContainer = styled.div`
     position: relative;
@@ -7,10 +8,10 @@ export const HomeContainer = styled.div`
         position: absolute;
     }
 
-    max-width: 1120px;
-    margin: 0 auto;
-
     padding: 1rem;
+
+    background-image: url(${vectorRight});
+    background-repeat: no-repeat;
 `
 
 export const HomeContent = styled.div`
@@ -18,13 +19,16 @@ export const HomeContent = styled.div`
     flex-direction: column;
     justify-content: center;
 
-    gap: 6rem;
+    max-width: 1120px;
+    margin: 0 auto;
 `
 
 export const HomeHeader = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+
+    margin-bottom: 20rem;
 `
 
 export const LogoCircle = styled.div`
@@ -43,7 +47,23 @@ export const LogoCircle = styled.div`
 export const HeaderHomeSummary = styled.div`
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     gap: 0.75rem;
+
+    color: ${props => props.theme.white};
+
+    p {
+        font-size: 1.875rem;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    span {
+        font-size: 0.875rem;
+    }
 `
 
 export const HeaderHomeSummaryList = styled.ul`
@@ -63,7 +83,8 @@ export const HeaderHomeSummaryList = styled.ul`
         font-size: 1.3em;
         height: 10px;
         width: 10px;
-        margin-right: 1rem;
+        margin-right: 0.5rem;
+        margin-left: 0.5rem;
     }
 
     h1 {
@@ -77,7 +98,8 @@ export const Summary = styled.div`
     box-shadow: rgba(0, 0, 0, 0.24) 0px 4px 8px 0;
     
     height: 18.875rem;
-    
+    margin-bottom: 10rem;
+
     position: relative;
 
     button {
@@ -166,7 +188,7 @@ export const AboutBox = styled.div`
         font-size: 1.25rem;
         text-align: center;
         
-        margin-top: 0.5rem;
+        margin-top: 1rem;
     }
 `
 
