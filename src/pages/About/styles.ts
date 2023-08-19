@@ -31,7 +31,7 @@ export const AboutHeader = styled.header`
 
     right: 15rem;
 
-    background-color: ${props => props.theme["blue-700"]};
+    padding: 8.5rem 0 0 32rem;
 
     margin-bottom: 34rem;
 
@@ -45,6 +45,15 @@ export const AboutHeader = styled.header`
         font-size: 1.25rem;
         color: ${props => props.theme.white};
     }
+
+    @media screen and (max-width: 700px) {
+        padding: 0;
+        padding-top: 6rem;
+
+        h1 {
+            font-size: 2.8rem;
+        }
+    }
 `
 
 export const AboutMainBox = styled.div`
@@ -54,6 +63,11 @@ export const AboutMainBox = styled.div`
     justify-content: center;
     align-items: center;
     margin-bottom: 12.5rem;
+
+    span {
+        font-size: 1rem;
+        text-align: justify;
+    }
 `
 
 export const AboutMainBoxHeader = styled.header`
@@ -64,6 +78,12 @@ export const AboutMainBoxHeader = styled.header`
     h1 {
         color: ${props => props.theme["blue-500"]};
         font-size: 2.5rem;
+    }
+
+    @media screen and (max-width: 700px) {
+        h1 {
+            font-size: 1.2rem;
+        }
     }
 `
 
@@ -77,6 +97,23 @@ export const CircleIconBox = styled.div`
     border-radius: 50%;
 
     background-color: ${props => props.theme["blue-500"]};
+
+    svg {
+        font-size: 44px;
+    }
+
+    @media screen and (max-width: 700px) {
+        width: 3.8125rem;
+        height: 3.8125rem;
+
+        h1 {
+            font-size: 1.2rem;
+        }
+
+        svg {
+            font-size: 25px;
+        }
+    }
 `
 
 export const KnowBox = styled.div`
@@ -89,5 +126,68 @@ export const KnowBox = styled.div`
     h1 {
         font-size: 2.5rem;
         color: ${props => props.theme["blue-500"]};
+    }
+
+    @media screen and (max-width: 700px) {
+        h1 {
+            font-size: 1.2rem;
+        }
+
+        margin-bottom: 3rem;
+    }
+`
+
+export const StackholdersContainer = styled.div`
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 10rem;
+
+    @media screen and (max-width: 1025px) {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    @media screen and (max-width: 725px) {
+        grid-template-columns: 1fr;
+        margin-bottom: 1rem;
+        gap: 1rem;
+    }
+`
+
+export const Stackholder = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+    height: 24rem;
+    
+    color: ${props => props.theme.black};
+
+    img {
+        border: 4px solid ${props => props.theme["blue-600"]};
+        border-radius: 50%;
+        width: 20rem;
+        position: initial;
+    }
+    
+    div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    h3 {
+        font-size: 1.875rem;
+        line-height: 36.57px;
+        text-align: center;
+    }
+
+    @media screen and (max-width: 725px) {
+        height: 20rem;
+
+        img {
+            width: 15rem;
+        }
     }
 `

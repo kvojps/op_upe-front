@@ -1,5 +1,5 @@
 import { MagnifyingGlass, Users } from "@phosphor-icons/react";
-import { AboutContainer, AboutContent, AboutHeader, AboutMainBox, AboutMainBoxHeader, CircleIconBox, KnowBox } from "./styles";
+import { AboutContainer, AboutContent, AboutHeader, AboutMainBox, AboutMainBoxHeader, CircleIconBox, KnowBox, Stackholder, StackholdersContainer } from "./styles";
 import { AboutBox } from "../../components/AboutBox/styles";
 
 export function About() {
@@ -10,15 +10,17 @@ export function About() {
           <h1>SOBRE NÓS</h1>
           <span>Pessoas reais. Projetos reais.</span>
         </AboutHeader>
+        
         <AboutMainBox>
             <AboutMainBoxHeader>
               <CircleIconBox>
-                <MagnifyingGlass color="#fff" size={44} weight="bold" />
+                <MagnifyingGlass color="#fff" weight="bold" />
               </CircleIconBox>
               <h1>O que é um Observatório acadêmico?</h1>
             </AboutMainBoxHeader>
             <span>Explicar o que é um observatório acadêmico e falar um pouco sobre</span>
         </AboutMainBox>
+
         <AboutBox>
           <h1># História do OP-UPE</h1>
           <p>Explicar sobre o surgimento/motivo da criação deste observatório</p>
@@ -30,12 +32,38 @@ export function About() {
             de pesquisa, extensão e inovação da Universidade de Pernambuco.
           </span>
         </AboutBox>
+
         <KnowBox>
           <CircleIconBox>
             <Users color="#fff" size={44} weight="bold" />
           </CircleIconBox>
           <h1>Conheça a nossa equipe!</h1>
         </KnowBox>
+
+        <StackholdersContainer>
+          <Stackholder>
+            <img src="https://github.com/rafa-souza-dev.png" alt="" />
+            <h3>Nome</h3>
+            <span>função</span>
+          </Stackholder>
+          <Stackholder>
+            <img src="https://github.com/rafa-souza-dev.png" alt="" />
+            <h3>Nome</h3>
+            <span>função</span>
+          </Stackholder>
+          <Stackholder>
+            <img src="https://github.com/rafa-souza-dev.png" alt="" />
+            <h3>Nome</h3>
+            <span>função</span>
+          </Stackholder>
+          <Stackholder>
+            <img src="https://github.com/rafa-souza-dev.png" alt="" />
+            <div>
+              <h3>Rafael Souza</h3>
+              <span>Front-end Developer</span>
+            </div>
+          </Stackholder>
+        </StackholdersContainer>
       </AboutContent>
     </AboutContainer>
   );
