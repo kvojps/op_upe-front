@@ -6,7 +6,6 @@ import {
     SummaryContent,
     SummaryCard,
     SummaryCardHeader,
-    AboutBox,
     CardBox,
     CardContainer,
     CardHeader,
@@ -15,6 +14,7 @@ import {
 import homeLogo from '../../assets/home-logo.png'
 import { Book, FileSearch, FileText, Info, MagnifyingGlass, MapPin, Medal, Star } from "@phosphor-icons/react";
 import { NavLink } from "react-router-dom";
+import { AboutBox } from "../../components/AboutBox/styles";
 
 export function Home() {
     return (
