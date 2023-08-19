@@ -153,6 +153,13 @@ export const Summary = styled.div`
         transition: background-color 0.6s;
     }
 
+    @media screen and (max-width: 1100px) {
+        button {
+            right: -0.3rem;
+            bottom: -1rem;
+        }
+    }
+
     @media screen and (max-width: 700px) {
         height: 30rem;
         margin: 0 auto;
@@ -210,7 +217,7 @@ export const CardBox = styled.div`
     margin-bottom: 10rem;
     justify-content: space-between;
 
-    @media screen and (max-width: 700px) {
+    @media screen and (max-width: 1050px) {
         flex-direction: column;
         gap: 2rem;
         margin-bottom: 10rem;
@@ -225,7 +232,7 @@ export const CardContainer = styled.div`
     width: 20rem;
     height: 26rem;
 
-    @media screen and (max-width: 700px) {
+    @media screen and (max-width: 1050px) {
         width: 100%;
     }
 `
