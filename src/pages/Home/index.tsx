@@ -13,7 +13,7 @@ import {
     CardContent
 } from "./styles";
 import homeLogo from '../../assets/home-logo.png'
-import { Book, FileText, Info, MapPin, Medal } from "@phosphor-icons/react";
+import { Book, FileSearch, FileText, Info, MagnifyingGlass, MapPin, Medal, Star } from "@phosphor-icons/react";
 import { NavLink } from "react-router-dom";
 
 export function Home() {
@@ -100,18 +100,18 @@ export function Home() {
                             </span>
                         </CardContent>
                     </CardContainer>
-                    
+
                     <CardContainer>
                         <CardContent>
                             <CardHeader>
-                                <Book size={36} color="#1A2D57" />
-                                <p>Projetos de Extensão</p>
+                                <MagnifyingGlass size={36} color="#1A2D57" />
+                                <p>Projetos de Pesquisa</p>
                             </CardHeader>
                             <span>
-                                Articular a Universidade com a sociedade e incentivar ações de 
-                                cultura e manifestações artísticas que procurem resgatar 
-                                as raízes culturais de grupos organizados em âmbito regional, 
-                                nacional e internacional.
+                                A pesquisa tem por finalidade a adoção de métodos e 
+                                processos criteriosos: planejamento da pesquisa, 
+                                procedimentos, análises de dados, interpretação para 
+                                posterior publicação em revistas científicas.
                             </span>
                         </CardContent>
                     </CardContainer>
@@ -119,14 +119,14 @@ export function Home() {
                     <CardContainer>
                         <CardContent>
                             <CardHeader>
-                                <Book size={36} color="#1A2D57" />
-                                <p>Projetos de Extensão</p>
+                                <Star size={36} color="#1A2D57" />
+                                <p>Projetos de Inovação</p>
                             </CardHeader>
                             <span>
-                                Articular a Universidade com a sociedade e incentivar ações de 
-                                cultura e manifestações artísticas que procurem resgatar 
-                                as raízes culturais de grupos organizados em âmbito regional, 
-                                nacional e internacional.
+                                Tem como objetivo em consonância com a missão e a visão da UPE, 
+                                a criação de estratégias de atuação institucional no ambiente 
+                                produtivo local, regional, nacional e internacional, bem como, 
+                                a execução de pesquisa científica, aplicada e tecnológica.
                             </span>
                         </CardContent>
                     </CardContainer>

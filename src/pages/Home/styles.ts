@@ -28,7 +28,13 @@ export const HomeHeader = styled.div`
     justify-content: space-between;
     align-items: flex-end;
 
-    margin-bottom: 20rem;
+    margin-bottom: 22rem;
+
+    @media screen and (max-width: 700px) {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+    }
 `
 
 export const LogoCircle = styled.div`
@@ -64,6 +70,20 @@ export const HeaderHomeSummary = styled.div`
     span {
         font-size: 0.875rem;
     }
+
+    @media screen and (max-width: 700px) {
+        p {
+            font-size: 1rem;
+        }
+
+        h1 {
+            font-size: 1.3rem;
+        }
+
+        span {
+            font-size: 0.6rem;
+        }
+    }
 `
 
 export const HeaderHomeSummaryList = styled.ul`
@@ -74,7 +94,6 @@ export const HeaderHomeSummaryList = styled.ul`
     justify-content: space-between;
 
     p {
-        font-size: 1.875rem;
         text-align: center;
     }
 
@@ -133,6 +152,22 @@ export const Summary = styled.div`
         border: 0;
         transition: background-color 0.6s;
     }
+
+    @media screen and (max-width: 700px) {
+        height: 30rem;
+        margin: 0 auto;
+        margin-bottom: 10rem;
+
+        button {
+            width: 4rem;
+            right: -0.3rem;
+            bottom: -1rem;
+        }
+
+        button p {
+            display: none;
+        }
+    }
 `
 
 export const SummaryContent = styled.div`
@@ -143,6 +178,11 @@ export const SummaryContent = styled.div`
     padding: 0 8.125rem;
 
     height: 100%;
+
+    @media screen and (max-width: 700px) {
+        flex-direction: column;
+        justify-content: space-around;
+    }
 `
 
 export const SummaryCard = styled.div`
@@ -173,6 +213,7 @@ export const AboutBox = styled.div`
 
     max-width: 44rem;
     margin: 0 auto;
+    margin-bottom: 12.5rem;
 
     h1 {
         color: ${props => props.theme["blue-600"]};
@@ -190,19 +231,45 @@ export const AboutBox = styled.div`
         
         margin-top: 1rem;
     }
+
+    @media screen and (max-width: 700px) {
+        h1 {
+            font-size: 2.2rem;
+        }
+
+        p {
+            font-size: 1.3rem;
+        }
+
+        span {
+            font-size: 1rem;
+        }   
+    }
 `
 
 export const CardBox = styled.div`
     display: flex;
-    min-width: 22rem;
-    flex-wrap: wrap;
-    gap: 1rem;
+    margin-bottom: 10rem;
+    justify-content: space-between;
+
+    @media screen and (max-width: 700px) {
+        flex-direction: column;
+        gap: 2rem;
+        margin-bottom: 10rem;
+    }
 `
 
 export const CardContainer = styled.div`
     background-color: ${props => props.theme.white};
     box-shadow: rgba(0, 0, 0, 0.24) 0px 4px 8px 0;
     border-radius: 1.25rem;
+
+    width: 20rem;
+    height: 26rem;
+
+    @media screen and (max-width: 700px) {
+        width: 100%;
+    }
 `
 
 export const CardContent = styled.div`
@@ -210,7 +277,7 @@ export const CardContent = styled.div`
     flex-direction: column;
     gap: 1.875rem;
 
-    padding: 2rem 4rem 2rem 4rem;
+    padding: 2rem;
 
     span {
         text-align: center;
