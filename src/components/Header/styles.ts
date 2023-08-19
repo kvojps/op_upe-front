@@ -31,19 +31,23 @@ export const HeaderContent = styled.div`
             text-decoration: none;
             color: ${(props) => props.theme['white']};
 
-            h1 {
-                font-size: 1.2rem;
-                font-weight: 400;
-
-                &:hover {
+            &:not(.active) {
+                h1:hover {
                     color: ${props => props.theme["red-200"]};
                     transition: 0.5s;
                     transform: scale(1.1);
                 }
+            }
 
-                &.active {
+            &.active {
+                h1 {
                     color: ${props => props.theme["red-200"]};
                 }
+            }
+
+            h1 {
+                font-size: 1.2rem;
+                font-weight: 400;
             }
         }
     }
