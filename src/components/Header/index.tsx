@@ -24,7 +24,7 @@ export function Header() {
 
     const options = [
         {
-            name: 'Home',
+            name: 'Início',
             navigate: () => navigate('/')
         },
         {
