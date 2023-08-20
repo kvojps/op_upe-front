@@ -12,11 +12,39 @@ import {
     CardContent
 } from "./styles";
 import homeLogo from '../../assets/home-logo.png'
-import { Book, FileSearch, FileText, Info, MagnifyingGlass, MapPin, Medal, Star } from "@phosphor-icons/react";
+import { Book, FileText, Info, MagnifyingGlass, MapPin, Medal, Star } from "@phosphor-icons/react";
 import { NavLink } from "react-router-dom";
 import { AboutBox } from "../../components/AboutBox/styles";
+import { useEffect, useState } from "react";
+import { client } from "../../client/client";
+
+type DashboardSummary = {
+    totalCampuses: number
+    totalProjects: number
+    totalCourses: number
+}
 
 export function Home() {
+    const [
+        dashboardSummary,
+        setDashboardSummary
+    ] = useState<DashboardSummary>({} as DashboardSummary)
+
+    async function fetchDashboardSummary() {
+        await client
+            .get("/dashboard/resumo")
+            .then(res => {
+                setDashboardSummary(res.data)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+
+    useEffect(() => {
+        fetchDashboardSummary()
+    }, [])
+
     return (
         <HomeContainer>
             <HomeContent>
@@ -38,7 +66,7 @@ export function Home() {
                 </HomeHeader>
 
                 <Summary>
-                    <NavLink to={'/sobre'}>
+                    <NavLink to={'/dashboard'}>
                         <button>
                             <p>Saiba mais</p>
 
@@ -52,7 +80,7 @@ export function Home() {
                                 <MapPin color="#22385E" size={36} weight="bold" />
                                 <span>Campus</span>
                             </SummaryCardHeader>
-                            <span>10</span>
+                            <span>{dashboardSummary.totalCampuses}</span>
                         </SummaryCard>
 
                         <SummaryCard>
@@ -60,7 +88,7 @@ export function Home() {
                                 <Medal color="#22385E" size={36} weight="bold" />
                                 <span>Cursos</span>
                             </SummaryCardHeader>
-                            <span>10</span>
+                            <span>{dashboardSummary.totalCourses}</span>
                         </SummaryCard>
 
                         <SummaryCard>
@@ -68,7 +96,7 @@ export function Home() {
                                 <FileText color="#22385E" size={36} weight="bold" />
                                 <span>Projetos</span>
                             </SummaryCardHeader>
-                            <span>10</span>
+                            <span>{dashboardSummary.totalProjects}</span>
                         </SummaryCard>
                     </SummaryContent>
                 </Summary>
