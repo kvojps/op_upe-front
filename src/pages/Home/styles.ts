@@ -175,6 +175,12 @@ export const Summary = styled.div`
             display: none;
         }
     }
+
+    @media screen and (max-width: 384px) {
+        button {
+            right: -0.4rem;
+        }
+    }
 `
 
 export const SummaryContent = styled.div`
