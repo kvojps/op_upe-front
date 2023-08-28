@@ -10,8 +10,15 @@ export const HomeContainer = styled.div`
 
     padding: 1rem;
 
+    margin-top: -0.4rem;
+
     background-image: url(${vectorRight});
     background-repeat: no-repeat;
+    background-size: 100%;
+
+    @media screen and (max-width: 1305px) {
+        background-size: auto;
+    }
 `
 
 export const HomeContent = styled.div`

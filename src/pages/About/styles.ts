@@ -14,6 +14,11 @@ export const AboutContainer = styled.div`
 
     background-image: url(${vectorLeft});
     background-repeat: no-repeat;
+    background-size: 100%;
+
+    @media screen and (max-width: 1305px) {
+        background-size: auto;
+    }
 `
 
 export const AboutContent = styled.div`
