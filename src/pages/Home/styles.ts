@@ -129,7 +129,7 @@ export const Summary = styled.div`
 
         position: absolute;
         bottom: -1.875rem;
-        right: -1.3125rem;
+        right: -1rem;
 
         background-color: ${props => props.theme["blue-600"]};
         box-shadow: rgba(0, 0, 0, 0.24) 0px 4px 8px 0;
