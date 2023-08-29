@@ -41,7 +41,7 @@ export function Project({
 
     const categoryDefaultValues = getCategoryDefaultValues(category)
     const selectedImageURL = imageURL ?? categoryDefaultValues.imageURL
-    const formattedDate = convertDateToBRFormat(createdAt)
+    const formattedDate = createdAt === null ? "Data indefinida" : convertDateToBRFormat(new Date(createdAt))
     const formattedIntro = introduction.length >= 200 ? `${introduction.substring(0, 200)}...`
         : introduction
 

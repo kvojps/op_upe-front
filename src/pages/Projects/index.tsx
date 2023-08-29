@@ -539,7 +539,7 @@ export function Projects() {
                                                     id={project.id}
                                                     authorName={project.autor}
                                                     category={project.areaTematica}
-                                                    createdAt={new Date(project.dataInicio)}
+                                                    createdAt={project.dataInicio}
                                                     introduction={project.introducao}
                                                     title={project.titulo}
                                                 />

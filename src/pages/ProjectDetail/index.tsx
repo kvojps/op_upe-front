@@ -69,9 +69,12 @@ export function ProjectDetail() {
         fetchProjectDetail()
     }, [])
 
-    const initialProjectDatePTBR = convertDateToBRFormat(new Date(projectDetailData.dataInicio))
-    const formattedInitialDate = convertDateFormatToYearMonthDay(new Date(projectDetailData.dataInicio))
-    const formattedFinalDate = convertDateFormatToYearMonthDay(new Date(projectDetailData.dataFim))
+    const initialProjectDatePTBR = projectDetailData.dataInicio === null ? "Data indefinida"
+        : convertDateToBRFormat(new Date(projectDetailData.dataInicio))
+    const formattedInitialDate = projectDetailData.dataInicio === null ? "Indefinido"
+        : convertDateFormatToYearMonthDay(new Date(projectDetailData.dataInicio))
+    const formattedFinalDate = projectDetailData.dataFim === null ? "Indefinido"
+        : convertDateFormatToYearMonthDay(new Date(projectDetailData.dataFim))
 
     const {
         areaTematica,
