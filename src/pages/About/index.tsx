@@ -1,6 +1,8 @@
 import { MagnifyingGlass, Users } from "@phosphor-icons/react";
 import { AboutContainer, AboutContent, AboutHeader, AboutMainBox, AboutMainBoxHeader, CircleIconBox, KnowBox, Stackholder, StackholdersContainer } from "./styles";
-import { AboutBox } from "../../components/AboutBox/styles";
+import ivaldir from "../../assets/ivaldir.jpeg"
+import hermano from "../../assets/hermano2.png"
+import jeferson from "../../assets/jeferson2.jpeg"
 
 export function About() {
   return (
@@ -16,22 +18,17 @@ export function About() {
               <CircleIconBox>
                 <MagnifyingGlass color="#fff" weight="bold" />
               </CircleIconBox>
-              <h1>O que é um Observatório acadêmico?</h1>
+              <h1>O que é um Observatório de Projetos?</h1>
             </AboutMainBoxHeader>
-            <span>Explicar o que é um observatório acadêmico e falar um pouco sobre</span>
+            <span>
+              É um instrumento de transparência com objetivo de
+              proporcionar o compartilhamento de conhecimento e de apoiar a tomada de decisão diante do caos
+              informacional vivenciado pelas organizações. Ou seja, possui o intuito de analisar um fenômeno e a partir dessa análise extrair resultados que
+              auxiliem na construção de um corpo de conhecimento. Com isso, ao termos um conjunto de informações é
+              necessário realizar o compartilhamento do estudo para todos e assim conseguir mostrar de maneira
+              transparente os resultados obtidos.
+            </span>
         </AboutMainBox>
-
-        <AboutBox>
-          <h1># História do OP-UPE</h1>
-          <p>Explicar sobre o surgimento/motivo da criação deste observatório</p>
-          <span>
-            Observatório de Projetos Pesquisa, Extensão e 
-            Inovação da Universidade de Pernambuco – Campus Garanhuns” 
-            (OP-UPE) é uma ferramenta web, desenvolvida para permitir 
-            transparência, integração e colaboração entre os projetos 
-            de pesquisa, extensão e inovação da Universidade de Pernambuco.
-          </span>
-        </AboutBox>
 
         <KnowBox>
           <CircleIconBox>
@@ -42,25 +39,32 @@ export function About() {
 
         <StackholdersContainer>
           <Stackholder>
-            <img src="https://github.com/rafa-souza-dev.png" alt="" />
-            <h3>Nome</h3>
-            <span>função</span>
+            <img src={ivaldir} alt="" />
+            <h3>Ivaldir Honório</h3>
+            <span>Orientador</span>
           </Stackholder>
           <Stackholder>
-            <img src="https://github.com/rafa-souza-dev.png" alt="" />
-            <h3>Nome</h3>
-            <span>função</span>
+            <img src={hermano} alt="" />
+            <h3>Hermano Perrelli</h3>
+            <span>Orientador</span>
           </Stackholder>
           <Stackholder>
-            <img src="https://github.com/rafa-souza-dev.png" alt="" />
-            <h3>Nome</h3>
-            <span>função</span>
+            <img src={jeferson} alt="" />
+            <h3>Jeferson Kennedy</h3>
+            <span>Orientador</span>
+          </Stackholder>
+          <Stackholder>
+            <img src="https://github.com/kvojps.png" alt="" />
+            <div>
+              <h3>José Ferreira</h3>
+              <span>Desenvolvedor de Software</span>
+            </div>
           </Stackholder>
           <Stackholder>
             <img src="https://github.com/rafa-souza-dev.png" alt="" />
             <div>
               <h3>Rafael Souza</h3>
-              <span>Front-end Developer</span>
+              <span>Desenvolvedor de Software</span>
             </div>
           </Stackholder>
         </StackholdersContainer>

@@ -8,13 +8,17 @@ export const AboutContainer = styled.div`
         position: absolute;
     }
 
-    padding: 1rem;
 
     margin-top: -0.4rem;
     margin-left: -0.4rem;
 
     background-image: url(${vectorLeft});
     background-repeat: no-repeat;
+    background-size: 100%;
+
+    @media screen and (max-width: 1305px) {
+        background-size: auto;
+    }
 `
 
 export const AboutContent = styled.div`
@@ -63,10 +67,20 @@ export const AboutMainBox = styled.div`
     justify-content: center;
     align-items: center;
     margin-bottom: 12.5rem;
+    width: 60rem;
+    padding: 0 0.5rem;
 
     span {
-        font-size: 1rem;
-        text-align: justify;
+        font-size: 1.25rem;
+        text-align: center;
+    }
+
+    @media screen and (max-width: 700px) {
+        width: 100%;
+
+        span {
+            font-size: 1rem;
+        }
     }
 `
 
@@ -82,7 +96,7 @@ export const AboutMainBoxHeader = styled.header`
 
     @media screen and (max-width: 700px) {
         h1 {
-            font-size: 1.2rem;
+            font-size: 0.9rem;
         }
     }
 `
@@ -103,15 +117,15 @@ export const CircleIconBox = styled.div`
     }
 
     @media screen and (max-width: 700px) {
-        width: 3.8125rem;
-        height: 3.8125rem;
+        width: 2rem;
+        height: 2rem;
 
         h1 {
             font-size: 1.2rem;
         }
 
         svg {
-            font-size: 25px;
+            font-size: 18px;
         }
     }
 `
@@ -121,7 +135,7 @@ export const KnowBox = styled.div`
     align-items: center;
     gap: 1rem;
 
-    margin-bottom: 7.5rem;
+    margin-bottom: 3rem;
 
     h1 {
         font-size: 2.5rem;
@@ -133,7 +147,7 @@ export const KnowBox = styled.div`
             font-size: 1.2rem;
         }
 
-        margin-bottom: 3rem;
+        margin-bottom: 1rem;
     }
 `
 
@@ -142,7 +156,7 @@ export const StackholdersContainer = styled.div`
     width: 100%;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 3rem;
-    margin-bottom: 10rem;
+    margin-bottom: 6rem;
 
     @media screen and (max-width: 1025px) {
         grid-template-columns: 1fr 1fr;
@@ -168,6 +182,7 @@ export const Stackholder = styled.div`
         border: 4px solid ${props => props.theme["blue-600"]};
         border-radius: 50%;
         width: 20rem;
+        height: 20rem;
         position: initial;
     }
     
@@ -188,6 +203,7 @@ export const Stackholder = styled.div`
 
         img {
             width: 15rem;
+            height: 15rem;
         }
     }
 `

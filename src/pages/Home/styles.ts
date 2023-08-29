@@ -10,8 +10,15 @@ export const HomeContainer = styled.div`
 
     padding: 1rem;
 
+    margin-top: -0.4rem;
+
     background-image: url(${vectorRight});
     background-repeat: no-repeat;
+    background-size: 100%;
+
+    @media screen and (max-width: 1305px) {
+        background-size: auto;
+    }
 `
 
 export const HomeContent = styled.div`
@@ -129,7 +136,7 @@ export const Summary = styled.div`
 
         position: absolute;
         bottom: -1.875rem;
-        right: -1.3125rem;
+        right: -1rem;
 
         background-color: ${props => props.theme["blue-600"]};
         box-shadow: rgba(0, 0, 0, 0.24) 0px 4px 8px 0;
@@ -173,6 +180,12 @@ export const Summary = styled.div`
 
         button p {
             display: none;
+        }
+    }
+
+    @media screen and (max-width: 384px) {
+        button {
+            right: -0.4rem;
         }
     }
 `
